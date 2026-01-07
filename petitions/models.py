@@ -44,24 +44,6 @@ class Petition(models.Model):
     def created_by_alias(self):
         return self.author.userprofile.alias
 
-#relación DÉBIL
-class PetitionAttachment(models.Model):
-    """
-    Adjunto que sólo existe mientras exista la petición.
-    No tiene id propio → clave compuesta (petición + orden).
-    """
-    petition = models.ForeignKey(Petition, on_delete=models.CASCADE)
-    order = models.PositiveSmallIntegerField()   # 1,2,3…
-    file = models.FileField(upload_to='attachments/')
-    caption = models.CharField(max_length=120, blank=True)
-
-    class Meta:
-        unique_together = ('petition', 'order')   # ← clave compuesta
-        ordering = ['order']
-
-    def __str__(self):
-        return f"Adjunto {self.order} de {self.petition.title}"
-
 class Vote(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     petition = models.ForeignKey(Petition, on_delete=models.CASCADE)
