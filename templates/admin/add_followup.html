@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+
+{% block title %}Editar seguimiento - {{ petition.title }}{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h2>Seguimiento de la petición</h2>
+    <h3>{{ petition.title }}</h3>
+
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+
+        <div class="mb-3">
+        <label for="notes" class="form-label">Notas de seguimiento</label>
+        <textarea name="notes" id="notes" class="form-control" rows="4">{{ petition.followup_notes }}</textarea>
+        <small class="form-text text-muted">Describe acciones tomadas, respuestas de la universidad, etc.</small>
+        </div>
+
+        <div class="mb-3">
+        <label for="pdf" class="form-label">Documento PDF (opcional)</label>
+        <input type="file" name="pdf" id="pdf" class="form-control" accept=".pdf">
+        {% if petition.followup_pdf %}
+            <div class="mt-2">
+            <small>Actualmente: <a href="{{ petition.followup_pdf.url }}" target="_blank">Ver PDF actual</a></small>
+            </div>
+        {% endif %}
+        <small class="form-text text-muted">Solo archivos PDF. Reemplazará el anterior si subes uno nuevo.</small>
+        </div>
+
+        <button type="submit" class="btn btn-success">Guardar seguimiento</button>
+        <a href="{% url 'petition_detail' petition.id %}" class="btn btn-secondary">Cancelar</a>
+    </form>
+</div>
+{% endblock %}

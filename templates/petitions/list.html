@@ -1,0 +1,340 @@
+{% extends 'base.html' %}
+
+{% block title %}Peticiones Activas - AlpaChange{% endblock %}
+
+{% block content %}
+<style>
+    /* ===== HERO MINIMALISTA ===== */
+    .hero-section {
+        background: linear-gradient(135deg, #f5f7fa 0%, #e9efff 100%);
+        border-radius: 18px;
+        padding: 45px 35px;
+        margin-bottom: 40px;
+        box-shadow: 0 4px 18px rgba(0,0,0,0.05);
+    }
+
+    .hero-title {
+        font-size: 2.2rem;
+        font-weight: 700;
+        color: #0d1b2a;
+    }
+
+    .hero-text {
+        font-size: 1.1rem;
+        color: #3f4a57;
+        margin-top: 10px;
+        max-width: 600px;
+    }
+
+    .hero-btn {
+        margin-top: 25px;
+        padding: 12px 28px;
+        font-size: 1.1rem;
+        border-radius: 10px;
+    }
+
+    .hero-stats {
+        margin-top: 25px;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 25px;
+    }
+
+    .hero-stat-box {
+        background: #ffffff;
+        padding: 15px 20px;
+        border-radius: 14px;
+        box-shadow: 0 3px 10px rgba(0,0,0,0.05);
+        min-width: 150px;
+        flex: 1;
+    }
+
+    .hero-stat-box b {
+        font-size: 1.4rem;
+        color: #0d6efd;
+    }
+
+
+
+    .petition-card {
+        border-radius: 12px;
+        padding: 18px;
+        background: #ffffff;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+        transition: transform .18s ease, box-shadow .18s ease;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        height: 100%;
+    }
+    .petition-card:hover {
+        transform: translateY(-6px);
+        box-shadow: 0 12px 30px rgba(0,0,0,0.10);
+    }
+
+    .petition-title {
+        font-size: 1.25rem;
+        font-weight: 700;
+        margin-bottom: 6px;
+        color: #212529;
+    }
+
+    .petition-preview {
+        font-size: .95rem;
+        color: #555;
+        margin-bottom: 10px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap; /* mantiene en 1 línea */
+    }
+
+    .petition-meta {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+        margin-bottom: 12px;
+    }
+
+    .petition-supports {
+        font-weight: 600;
+        color: #0d6efd;
+    }
+
+    .petition-timer {
+        color: #444;
+        font-size: .95rem;
+    }
+
+    .petition-btn {
+        border-radius: 10px;
+        padding: 10px 12px;
+    }
+
+    /* pequeño ajuste para que todas las tarjetas tengan igual altura en fila */
+    .card-col { height: 100%; display: flex; }
+
+    .progress-bar {
+    transition: width 0.6s cubic-bezier(0.4, 0, 0.2, 1),
+                background-color 0.4s ease,
+                box-shadow 0.3s ease;
+    height: 8px;
+    border-radius: 8px;
+}
+
+/* Efecto glow según el porcentaje */
+.progress-bar.glow-low {
+    box-shadow: 0 0 8px rgba(40, 167, 69, 0.4); /* verde suave */
+}
+
+.progress-bar.glow-mid {
+    box-shadow: 0 0 8px rgba(255, 193, 7, 0.4); /* amarillo suave */
+}
+
+.progress-bar.glow-high {
+    box-shadow: 0 0 8px rgba(220, 53, 69, 0.45); /* rojo suave */
+}
+
+</style>
+
+<div class="hero-section">
+
+    <h1 class="hero-title">Construyamos juntos la UNTELS del futuro</h1>
+
+    <p class="hero-text">
+        AlpaChange es la plataforma donde los estudiantes proponen, apoyan y transforman
+        nuestra universidad. Participa, crea y vota por los cambios que quieres ver.
+    </p>
+
+    <a href="{% url 'create_petition' %}" class="btn btn-primary hero-btn">
+        + Crear nueva petición
+    </a>
+
+    <div class="hero-stats">
+        <div class="hero-stat-box">
+            <b>{{ petition_data|length }}</b><br>
+            Peticiones activas
+        </div>
+
+        <div class="hero-stat-box">
+            <b>{{ total_votes_today }}</b><br>
+            Apoyos de hoy
+        </div>
+
+        <div class="hero-stat-box">
+            <b>{{ approved_petitions }}</b><br>
+            Peticiones resueltas
+        </div>
+    </div>
+
+</div>
+
+<div class="container">
+    <h1 class="mb-4">Peticiones Activas</h1>
+
+<div class="row g-4">
+    {% for item in petition_data %}
+    <div class="col-md-6">
+
+        <div class="petition-card w-100">
+
+            <!-- TÍTULO -->
+            <h3 class="petition-title">{{ item.petition.title }}</h3>
+
+            <!-- Categoría -->
+            {% if item.petition.category %}
+                <span class="badge bg-primary mb-2">
+                    {{ item.petition.category.name }}
+                </span>
+            {% endif %}
+
+            <!-- Descripción corta -->
+            <p class="petition-desc">
+                {{ item.petition.description|truncatechars:140 }}
+            </p>
+
+            <!-- META: apoyos y tiempo -->
+            <div class="petition-meta">
+                <span class="apoyos-badge">
+                    {{ item.vote_count }} apoyo{{ item.vote_count|pluralize }}
+                </span>
+
+                <span class="time-remaining">
+                    <span id="timer-{{ item.petition.id }}"
+                        data-start="{{ item.petition.created_at|date:'c' }}"
+                        data-end="{{ item.end_timestamp }}">
+                        Cargando…
+                    </span>
+                </span>
+            </div>
+
+            <!-- Barra de Progreso -->
+            <div class="progress mb-2">
+                <div id="progress-{{ item.petition.id }}"
+                    class="progress-bar"
+                    role="progressbar"
+                    style="width: 0%;">
+                </div>
+            </div>
+
+            <!-- Botón -->
+            <a href="{% url 'petition_detail' item.petition.id %}" 
+                class="btn btn-primary petition-btn">
+                Ver detalles
+            </a>
+
+        </div>
+
+    </div>
+    {% empty %}
+    <div class="col-12">
+        <div class="alert alert-info">No hay peticiones activas.</div>
+    </div>
+    {% endfor %}
+</div>
+
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    // Selecciona todos los timers
+    const timers = document.querySelectorAll("[id^='timer-']");
+
+    function formatTimeLeft(ms) {
+        if (ms <= 0) return null;
+        const totalSeconds = Math.floor(ms / 1000);
+        const days = Math.floor(totalSeconds / 86400);
+        const hours = Math.floor((totalSeconds % 86400) / 3600);
+        const minutes = Math.floor((totalSeconds % 3600) / 60);
+        const seconds = Math.floor(totalSeconds % 60);
+
+        // Formato: D días, HH:MM:SS
+        return `${days} días, ${String(hours).padStart(2,'0')}:${String(minutes).padStart(2,'0')}:${String(seconds).padStart(2,'0')}`;
+    }
+
+    timers.forEach(timer => {
+        const endTs = parseInt(timer.dataset.end, 10); // milisegundos
+        if (isNaN(endTs)) {
+            timer.textContent = "Tiempo no disponible";
+            return;
+        }
+
+        function update() {
+            const now = Date.now();
+            const diff = endTs - now;
+            if (diff <= 0) {
+                timer.textContent = "Archivada";
+                return;
+            }
+            timer.textContent = "Tiempo restante: " + formatTimeLeft(diff);
+        }
+
+        update();
+        // Actualiza cada segundo
+        setInterval(update, 1000);
+    });
+});
+document.addEventListener('DOMContentLoaded', function () {
+    const timers = document.querySelectorAll("[id^='timer-']");
+
+    function formatTimeLeft(ms) {
+        if (ms <= 0) return null;
+        const totalSeconds = Math.floor(ms / 1000);
+        const days = Math.floor(totalSeconds / 86400);
+        const hours = Math.floor((totalSeconds % 86400) / 3600);
+        const minutes = Math.floor((totalSeconds % 3600) / 60);
+        const seconds = Math.floor(totalSeconds % 60);
+        return `${days} días, ${String(hours).padStart(2,'0')}:${String(minutes).padStart(2,'0')}:${String(seconds).padStart(2,'0')}`;
+    }
+
+    timers.forEach(timer => {
+        const petitionId = timer.id.split("-")[1];
+        const progressBar = document.getElementById(`progress-${petitionId}`);
+
+        const endTs = parseInt(timer.dataset.end, 10);
+        const startDate = new Date(timer.dataset.start).getTime();
+
+        const totalDuration = endTs - startDate;
+
+        function update() {
+            const now = Date.now();
+            const diff = endTs - now;
+
+            if (diff <= 0) {
+                timer.textContent = "Archivada";
+                progressBar.style.width = "100%";
+                progressBar.classList.remove("bg-success", "bg-warning");
+                progressBar.classList.add("bg-danger");
+                return;
+            }
+
+            timer.textContent = "Tiempo restante: " + formatTimeLeft(diff);
+
+            // porcentaje %
+            const spent = now - startDate;
+            const percent = Math.min(100, Math.max(0, (spent / totalDuration) * 100));
+
+            progressBar.style.width = percent + "%";
+
+            // Cambiar color según progreso
+            if (percent < 50) {
+                progressBar.classList.remove("bg-warning", "bg-danger");
+                progressBar.classList.add("bg-success");
+            } else if (percent < 80) {
+                progressBar.classList.remove("bg-success", "bg-danger");
+                progressBar.classList.add("bg-warning");
+            } else {
+                progressBar.classList.remove("bg-success", "bg-warning");
+                progressBar.classList.add("bg-danger");
+            }
+        }
+
+        update();
+        setInterval(update, 1000);
+    });
+});
+
+</script>
+{% endblock %}

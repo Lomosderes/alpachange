@@ -1,0 +1,37 @@
+<!-- templates/petitions/my_reports.html -->
+{% extends 'base.html' %}
+
+{% block title %}Mis denuncias{% endblock %}
+
+{% block content %}
+    <h1>Mis denuncias</h1>
+
+    {% if reports %}
+        <ul class="list-group">
+        {% for report in reports %}
+            <li class="list-group-item">
+            <h5>
+                {% if report.petition %}
+                Denuncia: Petición "{{ report.petition.title }}"
+                {% elif report.comment %}
+                Denuncia: Comentario en "{{ report.comment.petition.title }}"
+                {% endif %}
+            </h5>
+            <p><strong>Razón:</strong> {{ report.reason }}</p>
+            <p><small>Enviada: {{ report.created_at|date:"d M Y H:i" }}</small></p>
+            {% if report.reviewed %}
+                <span class="badge bg-success">Resuelta</span>
+                <!-- Buscar notificación asociada -->
+                {% for note in report.notification_set.all %}
+                <p class="text-muted mt-2">{{ note.message }}</p>
+                {% endfor %}
+            {% else %}
+                <span class="badge bg-warning">Pendiente</span>
+            {% endif %}
+            </li>
+        {% endfor %}
+        </ul>
+    {% else %}
+        <p>Aún no has enviado denuncias.</p>
+    {% endif %}
+{% endblock %}

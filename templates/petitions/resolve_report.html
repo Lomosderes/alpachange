@@ -1,0 +1,41 @@
+<!-- templates/petitions/resolve_report.html -->
+{% extends 'base.html' %}
+
+{% block title %}Resolver denuncia - Admin{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h1>Resolver denuncia</h1>
+
+    <div class="card mb-4">
+        <div class="card-header">
+        <strong>Denuncia #{{ report.id }}</strong>
+        </div>
+        <div class="card-body">
+        <p><strong>Denunciante:</strong> {{ report.reporter.email }}</p>
+        <p><strong>Tipo:</strong> {{ report.get_report_type_display }}</p>
+        <p><strong>Razón del reporte:</strong> {{ report.reason }}</p>
+        {% if report.petition %}
+            <p><strong>Petición:</strong> <a href="{% url 'petition_detail' report.petition.id %}">{{ report.petition.title }}</a></p>
+        {% elif report.comment %}
+            <p><strong>Comentario:</strong> "{{ report.comment.content|truncatechars:100 }}"</p>
+            <p><strong>En petición:</strong> <a href="{% url 'petition_detail' report.comment.petition.id %}">{{ report.comment.petition.title }}</a></p>
+        {% endif %}
+        </div>
+    </div>
+
+    <h2>Escribe una respuesta para el denunciante</h2>
+    <form method="post">
+        {% csrf_token %}
+        <div class="mb-3">
+        {{ form.resolution_message.label_tag }}
+        {{ form.resolution_message }}
+        {% if form.resolution_message.help_text %}
+            <small class="form-text text-muted">{{ form.resolution_message.help_text }}</small>
+        {% endif %}
+        </div>
+        <button type="submit" class="btn btn-success">Marcar como resuelta y notificar</button>
+        <a href="{% url 'admin_reports' %}" class="btn btn-secondary">Cancelar</a>
+    </form>
+</div>
+{% endblock %}

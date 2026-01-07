@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="es">
+{% load static %}
+<head >
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" href="{% static 'favicon_v2.png' %}" type="image/png">
+    <link rel="shortcut icon" href="{% static 'favicon_v2.png' %}" type="image/png">
+    <link rel="apple-touch-icon" href="{% static 'favicon_v2.png' %}">
+    <meta name="msapplication-TileImage" content="{% static 'favicon_v2.png' %}">
+
+    <title>{% block title %}AlpaChange - UNTELS{% endblock %}</title>
+
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+
+
+    <style>
+        /* ---- Layout ---- */
+        body {
+            background-color: #f5f7fa;
+        }
+        
+
+        .navbar {
+            padding: 0.7rem 1rem;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+        }
+
+        .navbar-brand img {
+            height: 38px;
+            border-radius: 6px;
+        }
+
+        .main-content {
+            padding: 30px 0;
+        }
+
+        /* Sidebars */
+        .promo-sidebar .promo-item {
+            margin-bottom: 25px;
+            padding: 5px;
+        }
+
+        .promo-item img,
+        .promo-item video {
+            width: 100%;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        }
+
+        /* ---- Footer ---- */
+        footer {
+            background: #000000;
+            color: white;
+            padding: 30px 0;
+            text-align: center;
+            margin-top: 40px;
+        }
+
+        footer small {
+            opacity: 0.85;
+        }
+        .navbar-logo {
+            height: 38px;
+            width: auto;
+            max-width: 100%;
+            display: block;
+        }
+
+        /* Evita que Safari empuje el logo */
+        .navbar-brand {
+            flex-shrink: 0 !important;
+        }
+
+        /* Asegura que el botón hamburguesa no se cruce */
+        .navbar-toggler {
+            margin-left: auto;
+        }
+
+            /* Fijar navbar móvil en iOS */
+    @media (max-width: 991px) {
+        .navbar .container {
+            display: flex;
+            flex-wrap: wrap !important;  /* permite que el menú baje */
+            align-items: center;
+        }
+
+        .navbar-nav {
+            width: 100%;   /* asegura que las opciones ocupen todo el ancho */
+            text-align: left;
+            padding: 10px 0;
+        }
+
+        .navbar-collapse {
+            padding-top: 10px;
+        }
+
+        .navbar-toggler {
+            border: none;
+            outline: none;
+        }
+        
+        .vote-btn-animated {
+            position: relative;
+            transition: transform 0.2s ease;
+        }
+
+        .vote-btn-animated.voted {
+            background-color: #28a745 !important;
+            border-color: #28a745 !important;
+            color: white !important;
+        }
+
+        /* Animación pop */
+        .vote-pop {
+            animation: votePop 0.3s ease-out forwards;
+        }
+
+        @keyframes votePop {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.15); }
+            100% { transform: scale(1); }
+        }
+
+        /* Partículas (burbuja) */
+        .vote-bubble {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background: #28a745;
+            border-radius: 50%;
+            opacity: 0.7;
+            animation: bubbleFly 0.6s ease-out forwards;
+        }
+
+        @keyframes bubbleFly {
+            0% { transform: translate(0,0) scale(1); opacity: 0.7; }
+            100% { transform: translate(calc(-20px + 40px * var(--x)), -50px) scale(0.3); opacity: 0; }
+        }
+}
+
+        
+    </style>
+
+    {% block extra_css %}{% endblock %}
+</head>
+<body>
+
+{% load static %}
+{% load media_filters %}
+
+<!-- NAVBAR -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+    <div class="container">
+
+        <!-- LOGO -->
+                
+        <a class="navbar-brand d-flex align-items-center" href="{% url 'petition_list' %}">
+            <img src="{% static 'favicon_v2.png' %}" alt="Logo" class="navbar-logo">
+            <span class="ms-2">AlpaChange</span>
+        </a>
+
+
+
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarNav">
+
+            <ul class="navbar-nav me-auto">
+
+                {% if user.is_authenticated %}
+                    <li class="nav-item"><a class="nav-link" href="{% url 'dashboard' %}">Mi Panel</a></li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'notifications' %}">
+                            Notificaciones
+                            {% if unread_notification_count > 0 %}
+                                <span class="badge bg-danger">{{ unread_notification_count }}</span>
+                            {% endif %}
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'create_petition' %}">Crear petición</a>
+                    </li>
+                {% endif %}
+            </ul>
+
+            <ul class="navbar-nav">
+
+                {% if user.is_authenticated %}
+                    
+                    <!-- Usuario -->
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle fw-semibold" href="#" data-bs-toggle="dropdown">
+                            {{ user.userprofile.comment_alias|default:user.userprofile.student_code }}
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-end">
+                            <li><a class="dropdown-item" href="{% url 'public_profile' user.id %}">Mi Perfil</a></li>
+                            <li><a class="dropdown-item" href="{% url 'edit_profile' %}">Configuración</a></li>
+                            <li><a class="dropdown-item" href="{% url 'my_reports' %}">Mis denuncias</a></li>
+
+                            <li><hr class="dropdown-divider"></li>
+
+                            <li><a class="dropdown-item text-danger" href="{% url 'logout' %}">Cerrar sesión</a></li>
+                        </ul>
+                    </li>
+
+                {% else %}
+                    <li class="nav-item"><a class="nav-link" href="{% url 'login' %}">Iniciar sesión</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'register' %}">Registrarse</a></li>
+                {% endif %}
+
+                {% if user.is_staff %}
+                    <li class="nav-item"><a class="nav-link" href="{% url 'admin_reports' %}">Admin</a></li>
+                {% endif %}
+
+            </ul>
+        </div>
+
+    </div>
+</nav>
+
+<!-- CONTENEDOR PRINCIPAL -->
+<div class="container-fluid">
+    <div class="row">
+
+        <!-- SIDEBAR IZQUIERDA -->
+        <div class="col-md-2 promo-sidebar d-none d-md-block">
+            {% for item in promo_items_left %}
+                <div class="promo-item">
+                    {% if item.file.url|is_video %}
+                        <video controls>
+                            <source src="{{ item.file.url }}" type="video/mp4">
+                        </video>
+                    {% else %}
+                        <a href="{{ item.link|default:'#' }}">
+                            <img src="{{ item.file.url }}" alt="{{ item.title }}">
+                        </a>
+                    {% endif %}
+                </div>
+            {% endfor %}
+        </div>
+
+        <!-- CONTENIDO -->
+        <div class="col-md-8 main-content">
+            {% if messages %}
+                {% for message in messages %}
+                    <div class="alert alert-{{ message.tags }} alert-dismissible fade show">
+                        {{ message }}
+                        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                    </div>
+                {% endfor %}
+            {% endif %}
+
+            {% block content %}{% endblock %}
+        </div>
+
+        <!-- SIDEBAR DERECHA -->
+        <div class="col-md-2 promo-sidebar d-none d-md-block">
+            {% for item in promo_items_right %}
+                <div class="promo-item">
+                    {% if item.file.url|is_video %}
+                        <video controls>
+                            <source src="{{ item.file.url }}" type="video/mp4">
+                        </video>
+                    {% else %}
+                        <a href="{{ item.link|default:'#' }}">
+                            <img src="{{ item.file.url }}" alt="{{ item.title }}">
+                        </a>
+                    {% endif %}
+                </div>
+            {% endfor %}
+        </div>
+
+    </div>
+</div>
+
+
+<!-- FOOTER -->
+
+<footer class="footer-section mt-5">
+    <div class="container">
+
+        <div class="row justify-content-between">
+
+            <!-- LOGO -->
+            <div class="col-md-3 mb-4">
+                <img src="{% static 'logo.png' %}" alt="AlpaChange" class="footer-logo">
+                <p class="footer-desc mt-2">Plataforma estudiantil para mejorar la UNTELS.</p>
+            </div>
+
+            <!-- SECCIONES (vacías por ahora como pediste) -->
+            <div class="col-md-2 mb-4">
+                <h6 class="footer-title">AlpaChange</h6>
+                <ul class="footer-list">
+                    <li><a href="#">Sobre nosotros</a></li>
+                    <li><a href="#">Cómo funciona</a></li>
+                    <li><a href="#">Reglamento</a></li>
+                </ul>
+            </div>
+
+            <div class="col-md-2 mb-4">
+                <h6 class="footer-title">Enlaces útiles</h6>
+                <ul class="footer-list">
+                    <li><a href="#">Preguntas frecuentes</a></li>
+                    <li><a href="#">Soporte</a></li>
+                    <li><a href="#">Reportar problema</a></li>
+                </ul>
+            </div>
+
+            <div class="col-md-3 mb-4">
+                <h6 class="footer-title">Contacto</h6>
+                <ul class="footer-list">
+                    <li><a href="#">Email institucional</a></li>
+                    <li><a href="#">Guía de uso</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- LÍNEA FINAL -->
+        <div class="footer-bottom text-center mt-4">
+            © 2025 AlpaChange - UNTELS. Todos los derechos reservados.
+        </div>
+    </div>
+</footer>
+
+<style>
+/* ===== FOOTER ===== */
+.footer-section {
+    background: #0d1b2a;
+    color: #d9e2ec;
+    padding: 45px 0 25px;
+    margin-top: 60px;
+    border-top: 4px solid #1b263b;
+}
+
+.footer-title {
+    font-weight: 600;
+    margin-bottom: 12px;
+    color: #ffffff;
+}
+
+.footer-desc {
+    color: #c6d4e1;
+    font-size: 0.9rem;
+}
+
+.footer-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.footer-list li {
+    margin-bottom: 8px;
+}
+
+.footer-list a {
+    color: #c6d4e1;
+    text-decoration: none;
+    font-size: 0.9rem;
+}
+
+.footer-list a:hover {
+    color: #ffffff;
+    text-decoration: underline;
+}
+
+.footer-bottom {
+    font-size: 0.85rem;
+    color: #b3c2cf;
+    border-top: 1px solid #1b263b;
+    padding-top: 15px;
+    margin-top: 15px;
+}
+
+.footer-logo {
+    width: 110px;
+}
+
+.petition-card {
+    background: #ffffff;
+    border-radius: 16px;
+    padding: 22px;
+    box-shadow: 0 5px 14px rgba(0, 0, 0, 0.08);
+    transition: all 0.25s ease;
+    border: 1px solid #eef2f7;
+}
+
+.petition-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.12);
+}
+
+.petition-title {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: #102a43;
+    margin-bottom: 5px;
+}
+
+.petition-desc {
+    color: #6b7c93;
+    font-size: 0.95rem;
+    margin-bottom: 12px;
+}
+
+/* Barra de progreso */
+.progress {
+    height: 8px;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.progress-bar {
+    transition: width 0.4s ease;
+}
+
+/* Botón moderno */
+.petition-btn {
+    width: 100%;
+    padding: 12px;
+    font-size: 0.95rem;
+    font-weight: 600;
+    border-radius: 12px;
+}
+
+/* Contadores */
+.petition-meta {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+    font-size: 0.9rem;
+    color: #334e68;
+}
+
+.time-remaining {
+    font-weight: 600;
+}
+
+/* Badge de apoyos */
+.apoyos-badge {
+    font-weight: 700;
+    color: #1763ff;
+}
+
+
+
+</style>
+
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+{% block extra_js %}{% endblock %}
+
+</body>
+</html>
+

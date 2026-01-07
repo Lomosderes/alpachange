@@ -1,0 +1,42 @@
+<!-- templates/petitions/notifications.html -->
+{% extends 'base.html' %}
+
+{% block title %}Notificaciones - AlpaChange{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h1 class="mb-4">Notificaciones</h1>
+
+    {% if notifications %}
+        <div class="list-group">
+        {% for note in notifications %}
+            <div class="list-group-item list-group-item-action">
+            <div class="d-flex w-100 justify-content-between">
+                <h6 class="mb-1">Actualización de denuncia</h6>
+                <small class="text-muted">{{ note.created_at|date:"d M Y \a \l\a\s H:i" }}</small>
+            </div>
+            <p class="mb-1">{{ note.message }}</p>
+            {% if note.report.petition %}
+                <a href="{% url 'petition_detail' note.report.petition.id %}" class="stretched-link">
+                Ver petición
+                </a>
+            {% elif note.report.comment %}
+                <a href="{% url 'petition_detail' note.report.comment.petition.id %}" class="stretched-link">
+                Ver comentario
+                </a>
+            {% endif %}
+            </div>
+        {% endfor %}
+        </div>
+    {% else %}
+        <div class="alert alert-info">
+        <h4>No tienes notificaciones.</h4>
+        <p>Recibirás una notificación cuando un administrador responda a una de tus denuncias.</p>
+        </div>
+    {% endif %}
+
+    <div class="mt-3">
+        <a href="{% url 'my_reports' %}" class="btn btn-outline-secondary">Ver mis denuncias</a>
+    </div>
+</div>
+{% endblock %}

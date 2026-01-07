@@ -1,0 +1,35 @@
+
+
+<!-- templates/admin/reports.html -->
+{% extends 'base.html' %}
+
+{% block title %}Denuncias - Panel Admin{% endblock %}
+
+{% block content %}
+  <h1>Denuncias pendientes</h1>
+
+  {% if reports %}
+    <ul>
+      {% for report in reports %}
+        <li>
+          <strong>{{ report.reporter }}</strong> denunció:
+          {% if report.petition %}
+            <a href="{% url 'petition_detail' report.petition.id %}">Petición: {{ report.petition.title }}</a>
+          {% elif report.comment %}
+            Comentario: "{{ report.comment.content|truncatechars:30 }}"
+            <br><small>En petición: <a href="{% url 'petition_detail' report.comment.petition.id %}">{{ report.comment.petition.title }}</a></small>
+          {% endif %}
+          <p><em>Razón:</em> {{ report.reason }}</p>
+          <p><small>Creada: {{ report.created_at|date:"d M Y H:i" }}</small></p>
+          <a href="{% url 'resolve_report' report.id %}" class="btn btn-sm btn-success">Marcar como resuelta</a>
+          <a href="{% url 'delete_reported_content' report.id %}" class="btn btn-sm btn-danger">Eliminar contenido</a>
+        </li>
+        <hr>
+      {% endfor %}
+    </ul>
+  {% else %}
+    <p>No hay denuncias pendientes.</p>
+  {% endif %}
+
+  <a href="{% url 'admin:index' %}" class="btn btn-secondary">Ir al admin Django</a>
+{% endblock %}
