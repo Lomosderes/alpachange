@@ -1,0 +1,189 @@
+{% extends 'base.html' %}
+{% block title %}Mis Peticiones - AlpaChange{% endblock %}
+
+{% block content %}
+
+<style>
+    .petition-card {
+        border-radius: 16px;
+        padding: 22px;
+        background: #ffffff;
+        box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+        transition: transform .15s ease, box-shadow .15s ease;
+    }
+
+    .petition-card:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 10px 28px rgba(0,0,0,0.12);
+    }
+
+    .progress-container {
+        height: 8px;
+        background: #e5e5e5;
+        border-radius: 10px;
+        overflow: hidden;
+        margin: 8px 0 12px 0;
+    }
+
+    .progress-bar {
+        height: 100%;
+        width: 0%;
+        background: linear-gradient(90deg, #007bff, #00b4ff);
+        transition: width 0.4s ease;
+    }
+
+    .growth-positive {
+        color: #0c9a34;
+        font-weight: bold;
+    }
+    .growth-neutral {
+        color: #666;
+        font-weight: bold;
+    }
+    .growth-negative {
+        color: #d00000;
+        font-weight: bold;
+    }
+
+    .grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+        gap: 20px;
+    }
+</style>
+
+<div class="container mt-4">
+
+    <h1 class="mb-3">Mis Peticiones</h1>
+
+    <a href="{% url 'create_petition' %}" class="btn btn-primary mb-4">
+        + Crear nueva petición
+    </a>
+
+    <!-- ACTIVAS -->
+    <h2 class="mt-3 mb-2 fw-bold">Activas</h2>
+
+    {% if active_petitions %}
+        <div class="grid">
+
+            {% for p in active_petitions %}
+                <div class="petition-card">
+
+                    <h3 class="fw-bold">{{ p.title }}</h3>
+
+                    <!-- Apoyos -->
+                    <p class="mb-1">
+                        🗳️ <strong>{{ p.vote_count }}</strong> apoyos
+                    </p>
+
+                    <!-- Indicador de crecimiento -->
+                    <p class="mb-2">
+                        {% if p.vote_growth_24h > 0 %}
+                            <span class="growth-positive">⬆ +{{ p.vote_growth_24h }} apoyos hoy</span>
+                        {% elif p.vote_growth_24h == 0 %}
+                            <span class="growth-neutral">= sin cambios</span>
+                        {% else %}
+                            <span class="growth-negative">⬇ sin cambios</span>
+                        {% endif %}
+                    </p>
+
+                    <!-- TIMER -->
+                    <div>
+                        ⏳ Tiempo restante:
+                        <span class="timer text-primary fw-bold"
+                              data-total="{{ p.total_duration }}"
+                              data-remaining="{{ p.remaining_seconds }}">
+                        </span>
+                    </div>
+
+                    <!-- Barra de progreso -->
+                    <div class="progress mb-2">
+                <div id="progress-{{ item.petition.id }}"
+                    class="progress-bar"
+                    role="progressbar"
+                    style="width: 0%;">
+                </div>
+            </div>
+
+                    <!-- Botón -->
+                    <a href="{% url 'petition_detail' p.id %}"
+                       class="btn btn-primary btn-sm mt-2">
+                        Ver petición
+                    </a>
+
+                </div>
+            {% endfor %}
+
+        </div>
+    {% else %}
+        <p>No tienes peticiones activas.</p>
+    {% endif %}
+
+    <!-- ARCHIVADAS -->
+    <h2 class="mt-5 fw-bold">Archivadas</h2>
+
+    {% if archived_petitions %}
+        <div class="grid">
+            {% for p in archived_petitions %}
+                <div class="petition-card">
+                    <h3 class="fw-bold">{{ p.title }}</h3>
+                    <p class="mb-1">🗳️ <strong>{{ p.vote_count }}</strong> apoyos</p>
+
+                    <a href="{% url 'petition_detail' p.id %}"
+                       class="btn btn-secondary btn-sm mt-2">
+                        Ver petición
+                    </a>
+                </div>
+            {% endfor %}
+        </div>
+    {% else %}
+        <p>No tienes peticiones archivadas.</p>
+    {% endif %}
+
+</div>
+{% endblock %}
+
+
+{% block extra_scripts %}
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+
+    // === TIMER + PROGRESS BAR EN CADA TARJETA ===
+    const timers = document.querySelectorAll(".timer");
+
+    timers.forEach(timer => {
+        const total = parseInt(timer.dataset.total);
+        const remaining = parseInt(timer.dataset.remaining);
+        const progressBar = document.getElementById("progress-" + timer.id?.replace("timer-", ""));
+
+        let current = remaining;
+
+        function update() {
+            if (current <= 0) {
+                timer.textContent = "Finalizado";
+                if (progressBar) progressBar.style.width = "100%";
+                return;
+            }
+
+            const days = Math.floor(current / 86400);
+            const hours = Math.floor((current % 86400) / 3600);
+            const mins = Math.floor((current % 3600) / 60);
+            const secs = current % 60;
+
+            timer.textContent = `${days}d ${hours}h ${mins}m ${secs}s`;
+
+            const consumed = total - current;
+            const percent = (consumed / total) * 100;
+
+            if (progressBar) progressBar.style.width = percent + "%";
+
+            current--;
+        }
+
+        update();
+        setInterval(update, 1000);
+    });
+
+});
+</script>
+{% endblock %}

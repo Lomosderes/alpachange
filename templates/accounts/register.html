@@ -1,0 +1,122 @@
+{% extends 'base.html' %}
+{% load widget_tweaks %}
+
+{% block title %}Registro - AlpaChange{% endblock %}
+
+{% block content %}
+
+<style>
+  .register-container {
+    max-width: 480px;
+    margin: 48px auto;
+    background: #ffffff;
+    padding: 28px;
+    border-radius: 14px;
+    box-shadow: 0 8px 28px rgba(0,0,0,0.08);
+    animation: fadeIn 0.35s ease;
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(12px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  .register-title {
+    text-align: center;
+    font-weight: 700;
+    margin-bottom: 18px;
+    font-size: 1.5rem;
+  }
+
+  /* Fuerza alineación consistente de labels/inputs */
+  .field-row {
+    display: flex;
+    flex-direction: column; /* label arriba, input abajo (alineados) */
+    gap: 6px;
+    margin-bottom: 14px;
+  }
+
+  .form-label {
+    font-weight: 600;
+    font-size: 0.95rem;
+    margin-bottom: 0;
+  }
+
+  /* Inputs con mismo tamaño y apariencia */
+  .form-control {
+    border-radius: 10px;
+    padding: 10px 12px;
+    height: 44px;
+  }
+
+  /* Mensajes de error debajo del input (consistentes) */
+  .field-error {
+    color: #d9534f;
+    font-size: 0.875rem;
+    margin-top: 6px;
+  }
+
+  .btn-register {
+    width: 100%;
+    border-radius: 12px;
+    padding: 11px;
+    font-size: 1.02rem;
+  }
+
+  .extra-links {
+    text-align: center;
+    margin-top: 12px;
+    font-size: 0.95rem;
+  }
+</style>
+
+<div class="register-container">
+
+  <h1 class="register-title">Crear cuenta</h1>
+
+  <form method="post" novalidate>
+    {% csrf_token %}
+
+    {# Renderizamos cada campo manualmente para controlar id/label/clases #}
+    {% for field in form %}
+      <div class="field-row">
+        <label for="{{ field.id_for_label }}" class="form-label" >
+          {{ field.label }}
+          {% if field.field.required %}
+            <span class="text-danger">*</span>
+          {% endif %}
+        </label>
+
+        {# Añadimos clase form-control con widget_tweaks #}
+        {{ field|add_class:"form-control"  }}
+
+        {# Errores del campo (solo el primero) #}
+        {% if field.errors %}
+          <div class="field-error">{{ field.errors|first }}</div>
+        {% endif %}
+
+        {# Help text (opcional) #}
+        {% if field.help_text %}
+          <small class="text-muted">{{ field.help_text }}</small>
+        {% endif %}
+      </div>
+    {% endfor %}
+
+    {# Errores no campo (por ejemplo clean() que lanza ValidationError general) #}
+    {% if form.non_field_errors %}
+      <div class="alert alert-danger">
+        {% for e in form.non_field_errors %}
+          <div>{{ e }}</div>
+        {% endfor %}
+      </div>
+    {% endif %}
+
+    <button type="submit" class="btn btn-primary btn-register">Registrarse</button>
+  </form>
+
+  <div class="extra-links">
+    ¿Ya tienes cuenta? <a href="{% url 'login' %}">Iniciar sesión</a>
+  </div>
+</div>
+
+{% endblock %}

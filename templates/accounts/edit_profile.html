@@ -1,0 +1,127 @@
+{% extends 'base.html' %}
+{% load widget_tweaks %}
+
+{% block title %}Configuración - AlpaChange{% endblock %}
+
+{% block content %}
+
+<style>
+    .profile-container {
+        max-width: 520px;
+        margin: 45px auto;
+        background: #ffffff;
+        padding: 32px;
+        border-radius: 16px;
+        box-shadow: 0 6px 24px rgba(0,0,0,0.08);
+        animation: fadeIn 0.35s ease;
+    }
+
+    @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(15px); }
+        to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .profile-title {
+        text-align: center;
+        margin-bottom: 20px;
+        font-size: 1.6rem;
+        font-weight: 700;
+    }
+
+    .form-label {
+        font-weight: 600;
+        margin-bottom: 4px;
+    }
+
+    .form-control {
+        border-radius: 10px !important;
+        padding: 10px 12px;
+        font-size: 1rem;
+        height: 44px;
+    }
+
+    /* Mejor apariencia de checkboxes */
+    .check-row {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        margin-bottom: 14px;
+        font-size: 0.96rem;
+    }
+
+    .save-btn {
+        width: 100%;
+        padding: 12px;
+        border-radius: 12px;
+        font-size: 1.1rem;
+        margin-top: 8px;
+    }
+
+    .profile-info-box {
+        background: #f8f9fa;
+        padding: 18px;
+        border-radius: 14px;
+        margin-top: 25px;
+        box-shadow: 0 3px 14px rgba(0,0,0,0.05);
+    }
+
+    .profile-info-box p {
+        margin: 0 0 8px;
+    }
+</style>
+
+<div class="profile-container">
+
+    <h2 class="profile-title">Configuración de perfil</h2>
+
+    <form method="post">
+        {% csrf_token %}
+
+        <!-- Nombre real -->
+        <div class="mb-3">
+            <label class="form-label">Nombre real (opcional):</label>
+
+            <div class="row g-2">
+                <div class="col-6">
+                    {{ form.first_name|add_class:"form-control" |attr:"placeholder:Nombre" }}
+                </div>
+                <div class="col-6">
+                    {{ form.last_name|add_class:"form-control" |attr:"placeholder:Apellido"}}
+                </div>
+            </div>
+        </div>
+
+        <!-- Alias -->
+        <div class="mb-3">
+            <label class="form-label">Alias para comentarios:</label>
+            {{ form.comment_alias|add_class:"form-control"|attr:"placeholder:Alias" }}
+            <small class="text-muted">Este alias se mostrará públicamente en tus comentarios.</small>
+        </div>
+
+        <!-- Mostrar nombre real -->
+        <div class="check-row">
+            {{ form.show_real_name }}
+            <label for="{{ form.show_real_name.id_for_label }}">Mostrar mi nombre real en el perfil público</label>
+        </div>
+
+        <!-- Mostrar mis peticiones -->
+        <div class="check-row">
+            {{ form.show_petitions }}
+            <label for="{{ form.show_petitions.id_for_label }}">Mostrar mis peticiones en el perfil público</label>
+        </div>
+
+        <button type="submit" class="btn btn-primary save-btn">Guardar cambios</button>
+    </form>
+
+    <!-- Información fija del usuario -->
+    <div class="profile-info-box mt-4">
+        <p><strong>Código de estudiante:</strong> {{ profile.student_code }}</p>
+
+        {% if profile.comment_alias %}
+        <p><strong>Alias de comentarios:</strong> {{ profile.comment_alias }}</p>
+        {% endif %}
+    </div>
+
+</div>
+
+{% endblock %}

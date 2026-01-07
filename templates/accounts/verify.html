@@ -1,0 +1,105 @@
+{% extends 'base.html' %}
+
+{% block title %}Verificar correo - AlpaChange{% endblock %}
+
+{% block content %}
+
+<style>
+    .verify-container {
+        max-width: 420px;
+        margin: 50px auto;
+        background: #ffffff;
+        padding: 30px;
+        border-radius: 16px;
+        box-shadow: 0 6px 20px rgba(0,0,0,0.12);
+        animation: fadeIn 0.4s ease;
+    }
+
+    @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(15px); }
+        to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .verify-title {
+        text-align: center;
+        font-weight: 700;
+        margin-bottom: 18px;
+        font-size: 1.5rem;
+    }
+
+    .form-control {
+        border-radius: 10px;
+        padding: 11px 12px;
+        height: 46px;
+        font-size: 1rem;
+        text-align: center;
+        letter-spacing: 2px;
+        font-weight: 600;
+    }
+
+    .btn-verify {
+        width: 100%;
+        padding: 12px;
+        font-size: 1.1rem;
+        border-radius: 12px;
+        margin-top: 10px;
+    }
+
+    .info-text {
+        text-align: center;
+        margin-bottom: 12px;
+        font-size: 0.95rem;
+        color: #555;
+    }
+
+    .resend-link {
+        text-align: center;
+        margin-top: 14px;
+        font-size: 0.9rem;
+    }
+
+    .resend-link a {
+        color: #0d6efd;
+        text-decoration: none;
+        font-weight: 600;
+    }
+</style>
+
+
+<div class="verify-container">
+
+    <h1 class="verify-title">Verifica tu correo</h1>
+
+    <p class="info-text">
+        Ingresa el código enviado a tu correo institucional.
+    </p>
+
+    <form method="post">
+        {% csrf_token %}
+
+        <div class="mb-3">
+            <input
+                type="text"
+                name="code"
+                class="form-control"
+                placeholder="Ej: UEM1AUCTeof_1QY1Xh3laQ"
+                required
+            >
+        </div>
+
+        <button type="submit" class="btn btn-primary btn-verify">
+            Verificar
+        </button>
+    </form>
+
+    {% if error %}
+        <div class="alert alert-danger mt-3">{{ error }}</div>
+    {% endif %}
+
+    <div class="resend-link">
+        ¿No recibiste el código? <a href="#">Reenviar código</a>
+    </div>
+
+</div>
+
+{% endblock %}

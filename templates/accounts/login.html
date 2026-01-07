@@ -1,0 +1,121 @@
+{% extends 'base.html' %}
+
+{% block title %}Iniciar sesión - AlpaChange{% endblock %}
+
+{% block content %}
+
+<style>
+    .login-container {
+        max-width: 420px;
+        margin: 60px auto;
+    }
+
+    .login-card {
+        border-radius: 18px;
+        padding: 30px;
+        background: #ffffff;
+        box-shadow: 0 6px 15px rgba(0,0,0,0.12);
+        opacity: 0;
+        transform: translateY(20px);
+        animation: fadeSlideIn 0.7s ease-out forwards;
+    }
+
+    /* ✨ Animación de entrada */
+    @keyframes fadeSlideIn {
+        0% { opacity: 0; transform: translateY(25px); }
+        100% { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ✨ Animación de shake (error) */
+    .shake {
+        animation: shakeAnim 0.4s ease;
+    }
+
+    @keyframes shakeAnim {
+        0% { transform: translateX(0); }
+        25% { transform: translateX(-6px); }
+        50% { transform: translateX(6px); }
+        75% { transform: translateX(-6px); }
+        100% { transform: translateX(0); }
+    }
+
+    .login-title {
+        font-weight: 700;
+        text-align: center;
+        margin-bottom: 25px;
+        color: #333;
+    }
+
+    .login-btn {
+        width: 100%;
+        border-radius: 10px;
+        font-size: 1.1rem;
+        padding: 10px;
+    }
+
+    .login-footer {
+        text-align: center;
+        margin-top: 15px;
+        font-size: 0.95rem;
+    }
+
+    /* Mensaje de error */
+    .error-message {
+        background: #ffdddd;
+        border-left: 4px solid #c00;
+        padding: 10px 12px;
+        border-radius: 6px;
+        margin-bottom: 15px;
+        color: #a00;
+        font-size: 0.9rem;
+        animation: fadeInText 0.5s ease;
+    }
+
+    @keyframes fadeInText {
+        from { opacity: 0; }
+        to   { opacity: 1; }
+    }
+</style>
+
+<div class="login-container">
+    <div class="login-card {% if error_message %}shake{% endif %}">
+
+        <h2 class="login-title">Iniciar Sesión</h2>
+
+        {% if error_message %}
+            <div class="error-message">
+                {{ error_message }}
+            </div>
+        {% endif %}
+
+        <form method="post">
+            {% csrf_token %}
+
+            <div class="mb-3">
+                <label for="email" class="form-label">Correo institucional</label>
+                <input type="email" name="email" id="email" 
+                    class="form-control form-control-lg"
+                    value="{{ entered_email }}" required>
+            </div>
+
+            <div class="mb-3">
+                <label for="password" class="form-label">Contraseña</label>
+                <input type="password" name="password" id="password" 
+                    class="form-control form-control-lg" required>
+            </div>
+
+
+            <button type="submit" class="btn btn-primary login-btn">
+                Entrar
+            </button>
+        </form>
+
+        <p class="login-footer">
+            ¿No tienes cuenta? 
+            <a href="{% url 'register' %}">Regístrate</a>
+        </p>
+
+    </div>
+</div>
+
+{% endblock %}

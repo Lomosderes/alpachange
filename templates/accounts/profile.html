@@ -1,0 +1,161 @@
+{% extends 'base.html' %}
+
+{% block title %}Perfil de {{ profile.alias }} - AlpaChange{% endblock %}
+
+{% block content %}
+
+<style>
+/* ======== SOCIAL PROFILE CARD ======== */
+
+.profile-wrapper {
+    max-width: 850px;
+    margin: auto;
+}
+
+/* Banner */
+.profile-banner {
+    height: 160px;
+    background: linear-gradient(135deg, #007bff, #6610f2);
+    border-radius: 14px;
+    position: relative;
+}
+
+/* Avatar */
+.profile-avatar {
+    width: 130px;
+    height: 130px;
+    background: white;
+    border-radius: 50%;
+    position: absolute;
+    bottom: -40px;
+    left: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 3rem;
+    font-weight: bold;
+    color: #007bff;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+
+/* Content card */
+.profile-card {
+    margin-top: 70px;
+    background: #ffffff;
+    padding: 25px;
+    border-radius: 14px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.07);
+}
+
+/* Username */
+.profile-name {
+    font-size: 1.8rem;
+    font-weight: 700;
+}
+
+/* Stats grid */
+.profile-stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    text-align: center;
+    margin-top: 20px;
+}
+
+.profile-stat-box {
+    padding: 12px;
+}
+
+.profile-stat-number {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #0d6efd;
+}
+
+/* Section titles */
+.section-title {
+    margin-top: 40px;
+    font-weight: 700;
+}
+
+/* Cards */
+.content-card {
+    background: #ffffff;
+    padding: 18px;
+    border-radius: 14px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+    margin-bottom: 15px;
+}
+</style>
+
+<div class="profile-wrapper">
+
+    <!-- ======= PROFILE CARD ======= -->
+    <div class="profile-card">
+        <h1 class="profile-name">
+            {% if profile.show_real_name and viewed_user.first_name %}
+                {{ viewed_user.first_name }} {{ viewed_user.last_name }}
+            {% else %}
+                {{ profile.comment_alias|default:"Anónimo" }}
+            {% endif %}
+        </h1>
+
+        <p class="text-muted">
+            Código de estudiante: <strong>{{ profile.student_code }}</strong>
+        </p>
+
+        <!-- ======= STATS ======= -->
+        <div class="profile-stats">
+            <div class="profile-stat-box">
+                <div class="profile-stat-number">{{ petitions.count }}</div>
+                <small>Peticiones</small>
+            </div>
+
+            <div class="profile-stat-box">
+                <div class="profile-stat-number">{{ comments.count }}</div>
+                <small>Comentarios</small>
+            </div>
+
+            <div class="profile-stat-box">
+                <div class="profile-stat-number">
+                    {{ viewed_user.vote_set.count }}
+                </div>
+                <small>Apoyos dados</small>
+            </div>
+        </div>
+    </div>
+
+    <!-- ======= COMENTARIOS ======= -->
+    <h3 class="section-title">Comentarios</h3>
+
+    {% for comment in comments %}
+    <div class="content-card">
+        <p><strong>{{ comment.alias }}</strong> •
+           <small class="text-muted">{{ comment.created_at|date:"d M Y H:i" }}</small>
+        </p>
+        <p>{{ comment.content }}</p>
+        <small>
+            En: <a href="{% url 'petition_detail' comment.petition.id %}">
+                {{ comment.petition.title }}
+            </a>
+        </small>
+    </div>
+    {% empty %}
+        <p class="text-muted">No hay comentarios.</p>
+    {% endfor %}
+
+    <!-- ======= PETICIONES ======= -->
+    {% if profile.show_petitions %}
+        <h3 class="section-title">Peticiones creadas</h3>
+
+        {% for p in petitions %}
+        <div class="content-card">
+            <h5><a href="{% url 'petition_detail' p.id %}">{{ p.title }}</a></h5>
+            <small class="text-muted">{{ p.created_at|date:"d M Y" }} • {{ p.vote_count }} apoyos</small>
+        </div>
+        {% empty %}
+            <p class="text-muted">No ha creado peticiones.</p>
+        {% endfor %}
+    {% endif %}
+
+</div>
+{% endblock %}
