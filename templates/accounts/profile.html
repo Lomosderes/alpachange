@@ -3,159 +3,186 @@
 {% block title %}Perfil de {{ profile.alias }} - AlpaChange{% endblock %}
 
 {% block content %}
-
 <style>
-/* ======== SOCIAL PROFILE CARD ======== */
+    .profile-container {
+        max-width: 850px;
+        margin: auto;
+    }
 
-.profile-wrapper {
-    max-width: 850px;
-    margin: auto;
-}
+    .profile-header {
+        background: var(--surface-elevated);
+        border-radius: 24px;
+        border: 1px solid var(--border-subtle);
+        box-shadow: var(--shadow-soft);
+        padding: 40px;
+        margin-bottom: 30px;
+        position: relative;
+        overflow: hidden;
+    }
 
-/* Banner */
-.profile-banner {
-    height: 160px;
-    background: linear-gradient(135deg, #007bff, #6610f2);
-    border-radius: 14px;
-    position: relative;
-}
+    .profile-header::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 6px;
+        background: var(--brand-primary);
+    }
 
-/* Avatar */
-.profile-avatar {
-    width: 130px;
-    height: 130px;
-    background: white;
-    border-radius: 50%;
-    position: absolute;
-    bottom: -40px;
-    left: 30px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 3rem;
-    font-weight: bold;
-    color: #007bff;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-}
+    .profile-name {
+        font-size: 2rem;
+        font-weight: 800;
+        margin-bottom: 5px;
+        color: var(--brand-primary);
+    }
 
-/* Content card */
-.profile-card {
-    margin-top: 70px;
-    background: #ffffff;
-    padding: 25px;
-    border-radius: 14px;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.07);
-}
+    .student-badge {
+        background: oklch(96% 0.01 255);
+        color: var(--text-muted);
+        padding: 6px 14px;
+        border-radius: 100px;
+        font-size: 0.85rem;
+        font-weight: 700;
+        display: inline-block;
+        margin-bottom: 20px;
+    }
 
-/* Username */
-.profile-name {
-    font-size: 1.8rem;
-    font-weight: 700;
-}
+    .stats-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 15px;
+        margin-top: 10px;
+    }
 
-/* Stats grid */
-.profile-stats {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    text-align: center;
-    margin-top: 20px;
-}
+    .stat-box {
+        background: oklch(98% 0.01 255);
+        padding: 20px;
+        border-radius: 16px;
+        text-align: center;
+        transition: transform 0.2s ease;
+    }
 
-.profile-stat-box {
-    padding: 12px;
-}
+    .stat-box:hover {
+        transform: translateY(-3px);
+        background: oklch(96% 0.02 255);
+    }
 
-.profile-stat-number {
-    font-size: 1.5rem;
-    font-weight: bold;
-    color: #0d6efd;
-}
+    .stat-number {
+        font-size: 1.5rem;
+        font-weight: 800;
+        color: var(--brand-primary);
+        display: block;
+    }
 
-/* Section titles */
-.section-title {
-    margin-top: 40px;
-    font-weight: 700;
-}
+    .stat-label {
+        font-size: 0.75rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        color: var(--text-muted);
+        letter-spacing: 0.05em;
+    }
 
-/* Cards */
-.content-card {
-    background: #ffffff;
-    padding: 18px;
-    border-radius: 14px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.06);
-    margin-bottom: 15px;
-}
+    .section-title {
+        font-size: 1.25rem;
+        font-weight: 700;
+        margin: 40px 0 20px;
+        padding-left: 15px;
+        border-left: 4px solid var(--brand-primary);
+    }
+
+    .activity-card {
+        background: var(--surface-elevated);
+        border-radius: 16px;
+        padding: 20px;
+        border: 1px solid var(--border-subtle);
+        box-shadow: var(--shadow-soft);
+        margin-bottom: 15px;
+        transition: border-color 0.2s ease;
+    }
+
+    .activity-card:hover {
+        border-color: var(--brand-primary);
+    }
+
+    .activity-meta {
+        font-size: 0.85rem;
+        color: var(--text-muted);
+        margin-bottom: 10px;
+    }
 </style>
 
-<div class="profile-wrapper">
+<div class="profile-container">
 
-    <!-- ======= PROFILE CARD ======= -->
-    <div class="profile-card">
+    <!-- CABECERA PERFIL -->
+    <div class="profile-header">
         <h1 class="profile-name">
             {% if profile.show_real_name and viewed_user.first_name %}
                 {{ viewed_user.first_name }} {{ viewed_user.last_name }}
             {% else %}
-                {{ profile.comment_alias|default:"Anónimo" }}
+                {{ profile.comment_alias|default:"Usuario AlpaChange" }}
             {% endif %}
         </h1>
 
-        <p class="text-muted">
-            Código de estudiante: <strong>{{ profile.student_code }}</strong>
-        </p>
+        <div class="student-badge">
+            <i class="bi bi-person-badge me-1"></i> Estudiante #{{ profile.student_code }}
+        </div>
 
-        <!-- ======= STATS ======= -->
-        <div class="profile-stats">
-            <div class="profile-stat-box">
-                <div class="profile-stat-number">{{ petitions.count }}</div>
-                <small>Peticiones</small>
+        <div class="stats-grid">
+            <div class="stat-box">
+                <span class="stat-number">{{ petitions.count }}</span>
+                <span class="stat-label">Peticiones</span>
             </div>
-
-            <div class="profile-stat-box">
-                <div class="profile-stat-number">{{ comments.count }}</div>
-                <small>Comentarios</small>
+            <div class="stat-box">
+                <span class="stat-number">{{ comments.count }}</span>
+                <span class="stat-label">Comentarios</span>
             </div>
+            <div class="stat-box">
+                <span class="stat-number">{{ viewed_user.vote_set.count }}</span>
+                <span class="stat-label">Apoyos</span>
+            </div>
+        </div>
+    </div>
 
-            <div class="profile-stat-box">
-                <div class="profile-stat-number">
-                    {{ viewed_user.vote_set.count }}
+    <!-- ACTIVIDAD -->
+    <div class="row">
+        <div class="col-md-7">
+            <h3 class="section-title">Comentarios recientes</h3>
+            {% for comment in comments %}
+            <div class="activity-card">
+                <div class="activity-meta">
+                    <i class="bi bi-chat-left-dots me-1"></i> hace {{ comment.created_at|timesince }}
                 </div>
-                <small>Apoyos dados</small>
+                <p class="mb-2">{{ comment.content }}</p>
+                <div class="small">
+                    En: <a href="{% url 'petition_detail' comment.petition.id %}" class="fw-bold text-decoration-none">
+                        {{ comment.petition.title }}
+                    </a>
+                </div>
             </div>
+            {% empty %}
+                <p class="text-muted text-center py-4">No hay actividad reciente de comentarios.</p>
+            {% endfor %}
+        </div>
+
+        <div class="col-md-5">
+            {% if profile.show_petitions %}
+                <h3 class="section-title">Propuestas creadas</h3>
+                {% for p in petitions %}
+                <div class="activity-card">
+                    <h5 class="h6 fw-bold mb-1">
+                        <a href="{% url 'petition_detail' p.id %}" class="text-dark text-decoration-none">{{ p.title }}</a>
+                    </h5>
+                    <div class="small text-muted">
+                        <i class="bi bi-people me-1"></i> {{ p.vote_count }} apoyos recibidos
+                    </div>
+                </div>
+                {% empty %}
+                    <p class="text-muted small">No ha creado peticiones visibles.</p>
+                {% endfor %}
+            {% endif %}
         </div>
     </div>
-
-    <!-- ======= COMENTARIOS ======= -->
-    <h3 class="section-title">Comentarios</h3>
-
-    {% for comment in comments %}
-    <div class="content-card">
-        <p><strong>{{ comment.alias }}</strong> •
-           <small class="text-muted">{{ comment.created_at|date:"d M Y H:i" }}</small>
-        </p>
-        <p>{{ comment.content }}</p>
-        <small>
-            En: <a href="{% url 'petition_detail' comment.petition.id %}">
-                {{ comment.petition.title }}
-            </a>
-        </small>
-    </div>
-    {% empty %}
-        <p class="text-muted">No hay comentarios.</p>
-    {% endfor %}
-
-    <!-- ======= PETICIONES ======= -->
-    {% if profile.show_petitions %}
-        <h3 class="section-title">Peticiones creadas</h3>
-
-        {% for p in petitions %}
-        <div class="content-card">
-            <h5><a href="{% url 'petition_detail' p.id %}">{{ p.title }}</a></h5>
-            <small class="text-muted">{{ p.created_at|date:"d M Y" }} • {{ p.vote_count }} apoyos</small>
-        </div>
-        {% empty %}
-            <p class="text-muted">No ha creado peticiones.</p>
-        {% endfor %}
-    {% endif %}
 
 </div>
 {% endblock %}

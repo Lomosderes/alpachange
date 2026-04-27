@@ -23,7 +23,8 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('accounts/', include('accounts.urls')),
     path('petitions/', include('petitions.urls')),
-    path('', include('petitions.urls')),  # si tienes una vista de inicio en petitions
+    path('teachers/', include('evaluations.urls')),
+    path('', include('petitions.urls')),
 ]
 
 if settings.DEBUG:

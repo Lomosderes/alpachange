@@ -17,131 +17,141 @@
 
 
     <style>
-        /* ---- Layout ---- */
-        body {
-            background-color: #f5f7fa;
+        /* ---- Design Tokens (OKLCH) ---- */
+        :root {
+            --brand-primary: oklch(25% 0.05 250); /* #102636 */
+            --brand-accent: oklch(60% 0.20 45);   /* #ea6119 */
+            --brand-success: oklch(68% 0.16 175);  /* #0eba95 */
+            --surface-bg: oklch(99% 0.005 250);
+            --surface-elevated: oklch(100% 0 0);
+            --text-base: oklch(22% 0.04 250);
+            --text-muted: oklch(45% 0.03 250);
+            --border-subtle: oklch(90% 0.02 250);
+            --shadow-soft: 0 4px 20px -4px oklch(25% 0.1 250 / 0.12);
+            --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
         }
-        
+
+        /* ---- Global Styles ---- */
+        body {
+            background-color: var(--surface-bg);
+            color: var(--text-base);
+            font-family: system-ui, -apple-system, sans-serif;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        h1, h2, h3 {
+            color: var(--brand-primary);
+            font-weight: 800;
+            letter-spacing: -0.025em;
+        }
+
+        /* ---- Layout Components ---- */
+        .content-capsule {
+            border: 1px solid var(--border-subtle);
+            border-radius: 28px;
+            padding: 35px;
+            height: 100%;
+        }
+
+        .section-header {
+            font-size: 1.75rem;
+            font-weight: 800;
+            margin-bottom: 2rem;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            color: var(--brand-primary);
+        }
+
+        .section-header::after {
+            content: '';
+            height: 2px;
+            flex-grow: 1;
+            background: var(--border-subtle);
+        }
 
         .navbar {
-            padding: 0.7rem 1rem;
-            box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+            padding: 1rem 0;
+            background-color: var(--surface-elevated) !important;
+            border-bottom: 2px solid var(--brand-primary);
+            box-shadow: var(--shadow-soft);
+        }
+
+        .navbar-brand {
+            font-weight: 800;
+            color: var(--brand-primary) !important;
         }
 
         .navbar-brand img {
-            height: 38px;
-            border-radius: 6px;
+            height: 32px;
+            margin-right: 10px;
+        }
+
+        .nav-link {
+            color: var(--text-base) !important;
+            font-weight: 600;
+            transition: all 0.2s var(--ease-out-expo);
+        }
+
+        .nav-link:hover {
+            color: var(--brand-accent) !important;
         }
 
         .main-content {
-            padding: 30px 0;
-        }
-
-        /* Sidebars */
-        .promo-sidebar .promo-item {
-            margin-bottom: 25px;
-            padding: 5px;
-        }
-
-        .promo-item img,
-        .promo-item video {
-            width: 100%;
-            border-radius: 10px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+            padding: 40px 0;
         }
 
         /* ---- Footer ---- */
         footer {
-            background: #000000;
+            background: var(--brand-primary);
             color: white;
-            padding: 30px 0;
-            text-align: center;
-            margin-top: 40px;
+            padding: 60px 0 30px;
+            margin-top: 80px;
         }
 
-        footer small {
-            opacity: 0.85;
-        }
-        .navbar-logo {
-            height: 38px;
-            width: auto;
-            max-width: 100%;
-            display: block;
+        .footer-title {
+            color: var(--brand-accent) !important;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: 1.5rem;
         }
 
-        /* Evita que Safari empuje el logo */
-        .navbar-brand {
-            flex-shrink: 0 !important;
+        .footer-list a {
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            transition: color 0.2s ease;
         }
 
-        /* Asegura que el botón hamburguesa no se cruce */
-        .navbar-toggler {
-            margin-left: auto;
+        .footer-list a:hover {
+            color: var(--brand-accent);
         }
 
-            /* Fijar navbar móvil en iOS */
-    @media (max-width: 991px) {
-        .navbar .container {
-            display: flex;
-            flex-wrap: wrap !important;  /* permite que el menú baje */
-            align-items: center;
-        }
-
-        .navbar-nav {
-            width: 100%;   /* asegura que las opciones ocupen todo el ancho */
-            text-align: left;
-            padding: 10px 0;
-        }
-
-        .navbar-collapse {
-            padding-top: 10px;
-        }
-
-        .navbar-toggler {
+        /* ---- Common Components ---- */
+        .btn-primary {
+            background-color: var(--brand-accent);
             border: none;
-            outline: none;
-        }
-        
-        .vote-btn-animated {
-            position: relative;
-            transition: transform 0.2s ease;
-        }
-
-        .vote-btn-animated.voted {
-            background-color: #28a745 !important;
-            border-color: #28a745 !important;
-            color: white !important;
+            padding: 12px 28px;
+            border-radius: 12px;
+            font-weight: 700;
+            color: white;
+            transition: all 0.3s var(--ease-out-expo);
         }
 
-        /* Animación pop */
-        .vote-pop {
-            animation: votePop 0.3s ease-out forwards;
+        .btn-primary:hover {
+            background-color: oklch(55% 0.20 45);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px oklch(60% 0.20 45 / 0.3);
+            color: white;
         }
 
-        @keyframes votePop {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.15); }
-            100% { transform: scale(1); }
+        .badge.bg-primary {
+            background-color: var(--brand-primary) !important;
         }
 
-        /* Partículas (burbuja) */
-        .vote-bubble {
-            position: absolute;
-            width: 10px;
-            height: 10px;
-            background: #28a745;
-            border-radius: 50%;
-            opacity: 0.7;
-            animation: bubbleFly 0.6s ease-out forwards;
+        .badge.bg-danger {
+            background-color: var(--brand-accent) !important;
         }
-
-        @keyframes bubbleFly {
-            0% { transform: translate(0,0) scale(1); opacity: 0.7; }
-            100% { transform: translate(calc(-20px + 40px * var(--x)), -50px) scale(0.3); opacity: 0; }
-        }
-}
-
-        
     </style>
 
     {% block extra_css %}{% endblock %}
@@ -152,29 +162,23 @@
 {% load media_filters %}
 
 <!-- NAVBAR -->
-<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+<nav class="navbar navbar-expand-lg">
     <div class="container">
 
         <!-- LOGO -->
-                
         <a class="navbar-brand d-flex align-items-center" href="{% url 'petition_list' %}">
             <img src="{% static 'favicon_v2.png' %}" alt="Logo" class="navbar-logo">
-            <span class="ms-2">AlpaChange</span>
+            <span>AlpaChange</span>
         </a>
-
-
 
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
             <span class="navbar-toggler-icon"></span>
         </button>
 
         <div class="collapse navbar-collapse" id="navbarNav">
-
             <ul class="navbar-nav me-auto">
-
                 {% if user.is_authenticated %}
                     <li class="nav-item"><a class="nav-link" href="{% url 'dashboard' %}">Mi Panel</a></li>
-
                     <li class="nav-item">
                         <a class="nav-link" href="{% url 'notifications' %}">
                             Notificaciones
@@ -183,71 +187,57 @@
                             {% endif %}
                         </a>
                     </li>
-
                     <li class="nav-item">
                         <a class="nav-link" href="{% url 'create_petition' %}">Crear petición</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'teacher_list' %}">Profesores</a>
                     </li>
                 {% endif %}
             </ul>
 
             <ul class="navbar-nav">
-
                 {% if user.is_authenticated %}
-                    
-                    <!-- Usuario -->
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle fw-semibold" href="#" data-bs-toggle="dropdown">
                             {{ user.userprofile.comment_alias|default:user.userprofile.student_code }}
                         </a>
-                        <ul class="dropdown-menu dropdown-menu-end">
-                            <li><a class="dropdown-item" href="{% url 'public_profile' user.id %}">Mi Perfil</a></li>
-                            <li><a class="dropdown-item" href="{% url 'edit_profile' %}">Configuración</a></li>
-                            <li><a class="dropdown-item" href="{% url 'my_reports' %}">Mis denuncias</a></li>
-
+                        <ul class="dropdown-menu dropdown-menu-end border-0 shadow-lg" style="border-radius: 16px;">
+                            <li><a class="dropdown-item py-2" href="{% url 'public_profile' user.id %}">Mi Perfil</a></li>
+                            <li><a class="dropdown-item py-2" href="{% url 'edit_profile' %}">Configuración</a></li>
+                            <li><a class="dropdown-item py-2" href="{% url 'my_reports' %}">Mis denuncias</a></li>
                             <li><hr class="dropdown-divider"></li>
-
-                            <li><a class="dropdown-item text-danger" href="{% url 'logout' %}">Cerrar sesión</a></li>
+                            <li><a class="dropdown-item py-2 text-danger" href="{% url 'logout' %}">Cerrar sesión</a></li>
                         </ul>
                     </li>
-
                 {% else %}
                     <li class="nav-item"><a class="nav-link" href="{% url 'login' %}">Iniciar sesión</a></li>
-                    <li class="nav-item"><a class="nav-link" href="{% url 'register' %}">Registrarse</a></li>
+                    <li class="nav-item"><a class="nav-link btn btn-primary text-white ms-lg-3 px-4" href="{% url 'register' %}">Registrarse</a></li>
                 {% endif %}
 
                 {% if user.is_staff %}
-                    <li class="nav-item"><a class="nav-link" href="{% url 'admin_reports' %}">Admin</a></li>
+                    <li class="nav-item">
+                        <a class="nav-link ms-lg-2 text-primary fw-bold" href="/admin/">
+                            <i class="bi bi-shield-lock-fill me-1"></i> Panel Admin
+                        </a>
+                    </li>
                 {% endif %}
-
             </ul>
         </div>
-
     </div>
 </nav>
 
 <!-- CONTENEDOR PRINCIPAL -->
-<div class="container-fluid">
+<div class="container-fluid px-lg-5">
+    
+    <!-- Bloque para encabezados de ancho completo (Hero) con margen superior -->
+    <div class="pt-4 pt-lg-5">
+        {% block hero %}{% endblock %}
+    </div>
+
     <div class="row">
-
-        <!-- SIDEBAR IZQUIERDA -->
-        <div class="col-md-2 promo-sidebar d-none d-md-block">
-            {% for item in promo_items_left %}
-                <div class="promo-item">
-                    {% if item.file.url|is_video %}
-                        <video controls>
-                            <source src="{{ item.file.url }}" type="video/mp4">
-                        </video>
-                    {% else %}
-                        <a href="{{ item.link|default:'#' }}">
-                            <img src="{{ item.file.url }}" alt="{{ item.title }}">
-                        </a>
-                    {% endif %}
-                </div>
-            {% endfor %}
-        </div>
-
-        <!-- CONTENIDO -->
-        <div class="col-md-8 main-content">
+        <!-- CONTENIDO: 8 columnas (~70%) - Eliminamos padding top extra para alinear -->
+        <div class="col-lg-8" style="padding-top: 20px;">
             {% if messages %}
                 {% for message in messages %}
                     <div class="alert alert-{{ message.tags }} alert-dismissible fade show">
@@ -260,23 +250,10 @@
             {% block content %}{% endblock %}
         </div>
 
-        <!-- SIDEBAR DERECHA -->
-        <div class="col-md-2 promo-sidebar d-none d-md-block">
-            {% for item in promo_items_right %}
-                <div class="promo-item">
-                    {% if item.file.url|is_video %}
-                        <video controls>
-                            <source src="{{ item.file.url }}" type="video/mp4">
-                        </video>
-                    {% else %}
-                        <a href="{{ item.link|default:'#' }}">
-                            <img src="{{ item.file.url }}" alt="{{ item.title }}">
-                        </a>
-                    {% endif %}
-                </div>
-            {% endfor %}
+        <!-- SIDEBAR: 4 columnas (~30%) - Alineado con el contenido -->
+        <div class="col-lg-4 ranking-sidebar" style="padding-top: 20px;">
+            {% block sidebar %}{% endblock %}
         </div>
-
     </div>
 </div>
 

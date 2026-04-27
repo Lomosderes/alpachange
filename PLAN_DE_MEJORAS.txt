@@ -1,0 +1,29 @@
+# PLAN DE MEJORAS - PROYECTO ALPACHANGE
+
+Este documento detalla las mejoras identificadas tras el análisis inicial del código.
+Estado: [ ] Pendiente | [/] En Proceso | [X] Completado
+
+## 1. CORRECCIONES CRÍTICAS (Urgente)
+- [X] Corregir Error de Atributo en UserProfile: Se corrigió la llamada a 'alias' en petitions/models.py y se unificó el uso de 'comment_alias'.
+- [X] Arreglar Lógica de 'student_code' en Señales: Se hizo más robusto el manejo de student_code en signals, usando None para evitar colisiones UNIQUE.
+- [X] Limpiar Importaciones en Views: Se eliminó el import incorrecto de 'pyexpat.errors' en accounts/views.py y se verificaron las importaciones en petitions.
+
+## 2. OPTIMIZACIÓN DE LÓGICA (Backend)
+- [X] Unificar Lógica de Tiempo (DRY): Se verificó el uso de get_expiration_info en las vistas de peticiones.
+- [X] Optimizar Cálculo de Expiración: Se refactorizó 'should_archive_petition' en utils.py para eliminar el bucle 'while True' con múltiples consultas a BD.
+- [X] Consistencia de Alias: Se eliminaron métodos redundantes en RegisterForm y se aseguró que el alias se maneje de forma consistente a través de UserProfile.
+
+## 3. MEJORAS DE ARQUITECTURA
+- [X] Reorganizar aplicaciones: Mover apps a una carpeta 'apps/' para mayor limpieza.
+- [X] Refactorizar Settings: Dividir settings.py en base.py, local.py y production.py.
+- [X] Configuración de Estáticos: Se definió STATIC_ROOT en base.py.
+- [X] Validación Robusta: RegexValidator ya estaba presente en el modelo UserProfile.
+
+## 4. SEGURIDAD Y UX
+- [ ] Restricciones de Archivos: Limitar tamaño y tipo de archivos en los PDFs de seguimiento (followups).
+- [ ] Manejo de Sesiones: Asegurar que el guardado de alias y comentario sea atómico (transaction.atomic).
+- [ ] Documentación de API Interna: Comentar las funciones experimentales en views.py para mayor claridad.
+
+---
+Generado el: 26 de abril de 2026
+Responsable: Gemini CLI Agent

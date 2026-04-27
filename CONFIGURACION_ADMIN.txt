@@ -1,0 +1,83 @@
+# GUÍA DE CONFIGURACIÓN DE ADMINISTRADOR Y PUESTA EN MARCHA - ALPACHANGE
+
+Este documento contiene las instrucciones necesarias para gestionar el acceso administrativo y configurar el proyecto desde cero tras clonar el repositorio.
+
+---
+
+## 1. RECUPERACIÓN DE ACCESO (Si perdiste tus credenciales)
+
+Si no puedes ingresar al panel de administración (/admin), ejecuta uno de los siguientes comandos en tu terminal desde la raíz del proyecto:
+
+### A. Crear un nuevo Superusuario (Recomendado)
+Esto te permitirá crear un usuario con acceso total.
+```powershell
+venv\Scripts\python.exe manage.py createsuperuser
+```
+*Sigue las instrucciones: nombre de usuario, correo y contraseña.*
+
+### B. Cambiar contraseña de un usuario existente
+Si recuerdas el nombre de usuario pero no la clave:
+```powershell
+venv\Scripts\python.exe manage.py changepassword <nombre_de_usuario>
+```
+
+---
+
+## 2. GUÍA DE INICIO PARA DESARROLLADORES (Tras clonar el repo)
+
+Si acabas de clonar este repositorio, sigue estos pasos para configurar tu entorno local:
+
+### Paso 1: Crear y activar el entorno virtual
+```powershell
+python -m venv venv
+.\venv\Scripts\activate
+```
+
+### Paso 2: Instalar dependencias
+```powershell
+pip install -r requirements.txt
+```
+
+### Paso 3: Configurar variables de entorno
+Crea un archivo `.env` en la raíz del proyecto basándote en el siguiente esquema:
+```text
+SECRET_KEY='tu_clave_secreta_aqui'
+DEBUG=True
+EMAIL_HOST_USER='tu_correo@gmail.com'
+EMAIL_HOST_PASSWORD='tu_app_password_de_google'
+```
+
+### Paso 4: Preparar la Base de Datos
+Ejecuta las migraciones para crear las tablas necesarias (incluyendo la nueva app de evaluaciones):
+```powershell
+python manage.py migrate
+```
+
+### Paso 5: Cargar datos iniciales (Opcional)
+Si el administrador ha provisto archivos JSON con datos de profesores o cursos:
+```powershell
+python manage.py loaddata initial_data.json
+```
+
+### Paso 6: Crear tu acceso administrativo
+```powershell
+python manage.py createsuperuser
+```
+
+### Paso 7: Iniciar el servidor
+```powershell
+python manage.py runserver
+```
+
+---
+
+## 3. NOTAS SOBRE EL DISEÑO (Sistema de Colores)
+Para mantener la consistencia visual del proyecto, utiliza siempre los siguientes códigos de color configurados en el sistema:
+
+- **Azul Institucional:** `#102636` (Identidad y textos base)
+- **Naranja de Acción:** `#ea6119` (Botones principales y resaltados)
+- **Verde/Teal de Éxito:** `#0eba95` (Validaciones y promedios positivos)
+
+---
+Generado el: 27 de abril de 2026
+Alpachange Project - Transparencia Universitaria

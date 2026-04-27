@@ -6,7 +6,11 @@ import sys
 
 def main():
     """Run administrative tasks."""
-    os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'alpachange_untels.settings')
+    os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'alpachange_untels.settings.local')
+    
+    # Añadir la carpeta 'apps' al sys.path
+    sys.path.insert(0, os.path.join(os.path.dirname(__file__), 'apps'))
+
     try:
         from django.core.management import execute_from_command_line
     except ImportError as exc:

@@ -6,254 +6,287 @@
 
 {% block content %}
 <style>
-    /* ---- ESTILOS MODERNOS ---- */
-
+    /* ---- DETAIL VIEW REFINADA ---- */
     .detail-container {
-        max-width: 850px;
+        max-width: 900px;
         margin: auto;
     }
 
     .petition-header {
-        background: #ffffff;
-        padding: 25px;
-        border-radius: 14px;
-        box-shadow: 0 4px 14px rgba(0,0,0,0.08);
-        margin-bottom: 25px;
+        background: var(--surface-elevated);
+        padding: 40px;
+        border-radius: 24px;
+        border: 1px solid var(--border-subtle);
+        box-shadow: var(--shadow-soft);
+        margin-bottom: 30px;
     }
 
     .petition-header h1 {
-        font-size: 1.9rem;
-        font-weight: 700;
-        margin-bottom: 10px;
+        font-size: 2.25rem;
+        margin-bottom: 1rem;
+        line-height: 1.2;
     }
 
-    .petition-meta {
+    .header-meta {
         display: flex;
         justify-content: space-between;
         align-items: center;
+        flex-wrap: wrap;
+        gap: 15px;
     }
 
     .supports-badge {
-        font-size: 1.1rem;
+        font-size: 1.25rem;
+        font-weight: 800;
+        color: var(--brand-primary);
+        background: oklch(45% 0.14 255 / 0.08);
+        padding: 8px 20px;
+        border-radius: 100px;
+    }
+
+    .status-alert {
+        border-radius: 16px;
+        padding: 20px;
+        margin-top: 25px;
+        display: flex;
+        align-items: center;
+        gap: 15px;
         font-weight: 600;
-        color: #0d6efd;
     }
 
-    .timer-box {
-        margin-top: 10px;
-        padding: 10px 15px;
-        border-radius: 10px;
-    }
-
-    .content-card {
-        background: #ffffff;
-        padding: 22px;
-        border-radius: 12px;
-        box-shadow: 0 4px 14px rgba(0,0,0,0.08);
+    .content-section {
+        background: var(--surface-elevated);
+        padding: 35px;
+        border-radius: 24px;
+        border: 1px solid var(--border-subtle);
+        box-shadow: var(--shadow-soft);
         margin-bottom: 30px;
+    }
+
+    .section-label {
+        font-size: 0.85rem;
+        font-weight: 800;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        color: var(--text-muted);
+        margin-bottom: 1rem;
+        display: block;
+    }
+
+    .petition-description {
+        font-size: 1.1rem;
+        line-height: 1.7;
+        color: var(--text-base);
+        margin-bottom: 2rem;
+    }
+
+    /* SEGUIMIENTO (Oficial) */
+    .followup-card {
+        background: oklch(98% 0.02 200);
+        border-left: 4px solid oklch(60% 0.15 200);
+        border-radius: 16px;
+        padding: 25px;
+        margin-bottom: 30px;
+    }
+
+    .followup-title {
+        color: oklch(40% 0.1 200);
+        font-weight: 700;
+        margin-bottom: 10px;
+        display: flex;
+        align-items: center;
+        gap: 8px;
     }
 
     /* COMENTARIOS */
     .comment-card {
-        border-radius: 10px;
-        background: #ffffff;
-        box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+        background: var(--surface-elevated);
+        border: 1px solid var(--border-subtle);
+        border-radius: 16px;
+        padding: 20px;
+        margin-bottom: 15px;
+        transition: transform 0.2s ease;
     }
 
-    .comment-card small {
-        color: #777;
+    .comment-card:hover {
+        transform: translateX(5px);
+        border-color: var(--brand-primary);
     }
 
-    /* Barra de progreso */
-    .progress {
-        height: 10px;
-        margin-top: 8px;
+    .comment-author {
+        font-weight: 700;
+        color: var(--brand-primary);
+        text-decoration: none;
     }
 
-    .vote-btn {
-        width: 100%;
-        font-size: 1.2rem;
-        padding: 13px;
-        border-radius: 12px;
-        margin-top: 10px;
+    .comment-date {
+        font-size: 0.85rem;
+        color: var(--text-muted);
+        margin-left: 8px;
     }
-    /* ---- ANIMACIÓN DE VOTO ---- */
 
-.vote-btn-animated {
-    position: relative;
-    transition: transform 0.2s ease;
-}
+    /* BOTÓN DE APOYO */
+    .vote-btn-container {
+        position: sticky;
+        bottom: 30px;
+        z-index: 100;
+        text-align: center;
+        margin-top: 40px;
+    }
 
-.vote-btn-animated.voted {
-    background-color: #28a745 !important;
-    border-color: #28a745 !important;
-    color: white !important;
-}
+    .vote-btn-main {
+        padding: 18px 50px;
+        font-size: 1.25rem;
+        font-weight: 800;
+        border-radius: 20px;
+        box-shadow: 0 10px 30px -5px oklch(45% 0.14 255 / 0.3);
+        transition: all 0.4s var(--ease-out-expo);
+    }
 
-/* Animación pop */
-.vote-pop {
-    animation: votePop 0.3s ease-out forwards;
-}
+    .vote-btn-main.voted {
+        background-color: var(--brand-accent) !important;
+        box-shadow: 0 10px 30px -5px oklch(65% 0.22 150 / 0.3);
+    }
 
-@keyframes votePop {
-    0% { transform: scale(1); }
-    50% { transform: scale(1.15); }
-    100% { transform: scale(1); }
-}
-
-@keyframes bubbleFly {
-    0% { transform: translate(0,0) scale(1); opacity: 0.7; }
-    100% { transform: translate(calc(-20px + 40px * var(--x)), -50px) scale(0.3); opacity: 0; }
-}
-
+    .vote-btn-main:hover {
+        transform: scale(1.05) translateY(-2px);
+    }
 </style>
 
 <div class="detail-container">
 
-    <!-- ===================
-          CABECERA
-    ===================== -->
+    <!-- CABECERA -->
     <div class="petition-header">
-
+        <span class="badge bg-primary mb-3">{{ petition.category.name }}</span>
         <h1>{{ petition.title }}</h1>
 
-        <div class="petition-meta">
+        <div class="header-meta">
             <div class="supports-badge">
-                {{ petition.vote_count }} apoyo{{ petition.vote_count|pluralize }}
+                <span id="vote-count-large">{{ petition.vote_count }}</span> apoyos
+            </div>
+            <div class="text-muted">
+                <i class="bi bi-calendar3 me-1"></i> Creada el {{ petition.created_at|date:"d M, Y" }}
             </div>
         </div>
 
         {% if petition.is_active %}
-            <div class="alert alert-warning timer-box">
-                ⏳ <strong>Tiempo restante:</strong>
-                <span id="timer-{{ petition.id }}" data-start="{{ petition.created_at|date:'c' }}">
-                    Cargando…
-                </span>
-
-                <!-- Barra de progreso del tiempo -->
-                <div class="progress">
-                    <div class="progress-bar" id="progress-{{ petition.id }}" role="progressbar"
-                        style="width: 0%;"></div>
+            <div class="alert alert-warning status-alert shadow-none border-0 m-0 mt-4">
+                <div class="flex-shrink-0">
+                    <i class="bi bi-hourglass-split fs-3"></i>
+                </div>
+                <div>
+                    <div class="small text-uppercase fw-bold opacity-75">Tiempo restante</div>
+                    <span id="timer-{{ petition.id }}" class="fs-5" data-start="{{ petition.created_at|date:'c' }}">
+                        Cargando…
+                    </span>
+                    <div class="progress mt-2" style="height: 4px; background: rgba(0,0,0,0.05);">
+                        <div id="progress-{{ petition.id }}" class="progress-bar bg-dark" style="width: 0%;"></div>
+                    </div>
                 </div>
             </div>
         {% else %}
-            <div class="alert alert-secondary">
-                📁 Esta petición ha sido archivada.
+            <div class="alert alert-secondary status-alert shadow-none border-0 m-0 mt-4">
+                <i class="bi bi-archive fs-3"></i>
+                <div>Esta petición ha sido archivada.</div>
             </div>
         {% endif %}
     </div>
 
-    <!-- ===================
-          DESCRIPCIÓN
-    ===================== -->
-    <div class="content-card">
-        <h4>Descripción</h4>
-        <p>{{ petition.description }}</p>
-        <p><strong>Categoría:</strong> {{ petition.category.name }}</p>
-    </div>
-
-
-    <!-- ===================
-          BLOQUE DE SEGUIMIENTO (SIEMPRE QUE EXISTA)
-    ===================== -->
-    {% if petition.followup_pdf or petition.followup_notes %}
-    <div class="card shadow-sm mb-4" style="border-radius: 14px;">
-        <div class="card-header bg-info text-white" style="border-radius: 14px 14px 0 0;">
-            <strong>Seguimiento</strong>
+    <!-- CONTENIDO -->
+    <div class="content-section">
+        <span class="section-label">Detalles de la petición</span>
+        <div class="petition-description">
+            {{ petition.description|linebreaks }}
         </div>
-        <div class="card-body">
 
-            {% if petition.followup_notes %}
-            <p class="mb-2">{{ petition.followup_notes }}</p>
-            {% endif %}
-
-            {% if petition.followup_pdf %}
-            <a href="{{ petition.followup_pdf.url }}" target="_blank"
-               class="btn btn-outline-primary">
-               📄 Ver documento oficial
-            </a> 
-            {% endif %}
-
-        </div>
-    </div>
-    {% endif %}
-
-
-
-    <!-- ===================
-          COMENTARIOS
-    ===================== -->
-    <h3 class="mb-3">Comentarios ({{ petition.comments.count }})</h3>
-
-    {% for comment in petition.comments.all %}
-        {% if not comment.is_hidden %}
-        <div class="card mb-3 comment-card">
-            <div class="card-body">
-                <p class="mb-1">
-                    <a href="{% url 'public_profile' comment.author.id %}">
-                        <strong>{{ comment.alias }}</strong>
+        {% if petition.followup_pdf or petition.followup_notes %}
+            <div class="followup-card">
+                <div class="followup-title">
+                    <i class="bi bi-shield-check"></i> Seguimiento Institucional
+                </div>
+                {% if petition.followup_notes %}
+                    <p class="mb-3">{{ petition.followup_notes }}</p>
+                {% endif %}
+                {% if petition.followup_pdf %}
+                    <a href="{{ petition.followup_pdf.url }}" target="_blank" class="btn btn-primary">
+                        <i class="bi bi-file-earmark-pdf me-2"></i> Ver Documento Oficial
                     </a>
-                    <small> • {{ comment.created_at|date:"d M Y H:i" }}</small>
-                </p>
-                <p>{{ comment.content }}</p>
-                {% if user.is_authenticated %}
-                <button class="btn btn-sm btn-outline-danger" onclick="reportComment({{ comment.id }})">
-                    Denunciar
-                </button>
                 {% endif %}
             </div>
-        </div>
         {% endif %}
-    {% empty %}
-        <p class="text-muted">Aún no hay comentarios.</p>
-    {% endfor %}
-
-
-    <!-- FORMULARIO -->
-    {% if user.is_authenticated and user.userprofile.is_verified %}
-    <div class="content-card mt-4">
-        <h4>Añadir comentario</h4>
-        <form method="post" action="{% url 'add_comment' petition.id %}">
-            {% csrf_token %}
-            <div class="mb-3">
-                {{ comment_form.content.label_tag }}
-                {{ comment_form.content }}
-            </div>
-            <button type="submit" class="btn btn-success">Comentar</button>
-        </form>
     </div>
-    {% elif user.is_authenticated %}
-        <p class="mt-3">Debes <a href="{% url 'verify_email' %}">verificar tu correo institucional</a> para comentar.</p>
-    {% else %}
-        <p class="mt-3"><a href="{% url 'login' %}">Inicia sesión</a> para participar.</p>
-    {% endif %}
 
+    <!-- COMENTARIOS -->
+    <div class="mb-5">
+        <h3 class="mb-4">Participación Estudiantil ({{ petition.comments.count }})</h3>
 
-    <!-- VOTAR -->
+        {% for comment in petition.comments.all %}
+            {% if not comment.is_hidden %}
+            <div class="comment-card">
+                <div class="d-flex justify-content-between align-items-start mb-2">
+                    <div>
+                        <a href="{% url 'public_profile' comment.author.id %}" class="comment-author">
+                            {{ comment.alias }}
+                        </a>
+                        <span class="comment-date">{{ comment.created_at|date:"d M, Y" }}</span>
+                    </div>
+                    {% if user.is_authenticated %}
+                    <button class="btn btn-link btn-sm text-danger p-0 text-decoration-none" onclick="reportComment({{ comment.id }})">
+                        <i class="bi bi-flag"></i> Denunciar
+                    </button>
+                    {% endif %}
+                </div>
+                <p class="mb-0 text-secondary">{{ comment.content }}</p>
+            </div>
+            {% endif %}
+        {% empty %}
+            <div class="text-center py-4 text-muted border rounded-4 border-dashed">
+                <i class="bi bi-chat-dots fs-1 mb-2 d-block"></i>
+                Aún no hay comentarios. ¡Sé el primero en opinar!
+            </div>
+        {% endfor %}
+
+        <!-- FORMULARIO COMENTARIO -->
+        {% if user.is_authenticated and user.userprofile.is_verified %}
+            <div class="content-section mt-4 p-4">
+                <span class="section-label">Tu opinión importa</span>
+                <form method="post" action="{% url 'add_comment' petition.id %}">
+                    {% csrf_token %}
+                    <div class="mb-3">
+                        {{ comment_form.content }}
+                    </div>
+                    <button type="submit" class="btn btn-primary px-4">Publicar comentario</button>
+                </form>
+            </div>
+        {% endif %}
+    </div>
+
+    <!-- ZONA DE VOTO -->
     {% if user.is_authenticated and user.userprofile.is_verified %}
-        <button id="vote-btn"
-                class="btn btn-primary vote-btn vote-btn-animated"
-                onclick="vote({{ petition.id }})">
-            {{ user|is_voted:petition.id|yesno:"Quitar apoyo,Apoyar esta petición" }}
-        </button>
-
+        <div class="vote-btn-container">
+            <button id="vote-btn"
+                    class="btn btn-primary vote-btn-main vote-btn-animated {{ user|is_voted:petition.id|yesno:'voted,' }}"
+                    onclick="vote({{ petition.id }})">
+                <i class="bi {{ user|is_voted:petition.id|yesno:'bi-check-circle-fill,bi- megaphone' }} me-2"></i>
+                <span>{{ user|is_voted:petition.id|yesno:"Quitar apoyo,Apoyar esta petición" }}</span>
+            </button>
+        </div>
     {% endif %}
-    
+
     {% if user.is_staff %}
-        <div class="mt-3">
-            <a href="{% url 'add_followup' petition.id %}" class="btn btn-secondary btn-sm">
-            ✏️ Editar seguimiento
+        <div class="text-center mt-4">
+            <a href="{% url 'add_followup' petition.id %}" class="btn btn-outline-secondary btn-sm rounded-pill px-4">
+                <i class="bi bi-pencil-square me-1"></i> Gestionar Seguimiento
             </a>
         </div>
     {% endif %}
+
 </div>
 {% endblock %}
 
-
 {% block extra_js %}
 <script>
-/* ------------ TIMER + BARRA DE PROGRESO ----------- */
-
+/* ------------ TIMER + PROGRESS ----------- */
 document.addEventListener("DOMContentLoaded", () => {
     const timer = document.getElementById("timer-{{ petition.id }}");
     if (!timer) return;
@@ -276,15 +309,10 @@ document.addEventListener("DOMContentLoaded", () => {
         const totalDuration = expires - createdAt;
         const percent = Math.min(100, ((now - createdAt) / totalDuration) * 100);
 
-        progress.style.width = percent + "%";
-        progress.classList.remove("bg-success", "bg-warning", "bg-danger");
-
-        if (percent < 50) progress.classList.add("bg-success");
-        else if (percent < 80) progress.classList.add("bg-warning");
-        else progress.classList.add("bg-danger");
+        if (progress) progress.style.width = percent + "%";
 
         if (diff <= 0) {
-            timer.textContent = "Archivada";
+            timer.textContent = "Finalizada";
             return;
         }
 
@@ -293,14 +321,42 @@ document.addEventListener("DOMContentLoaded", () => {
         const mins = Math.floor((diff % 3600000) / 60000);
         const secs = Math.floor((diff % 60000) / 1000);
 
-        timer.textContent = `${days} días, ${String(hours).padStart(2,"0")}:${String(mins).padStart(2,"0")}:${String(secs).padStart(2,"0")}`;
+        timer.textContent = `${days}d ${String(hours).padStart(2,"0")}h ${String(mins).padStart(2,"0")}m ${String(secs).padStart(2,"0")}s`;
     }
 
     update();
     setInterval(update, 1000);
 });
 
-/* ------------ REPORTAR COMENTARIO ----------- */
+/* ------------ VOTAR (AJAX) ----------- */
+function vote(petitionId) {
+    const btn = document.getElementById("vote-btn");
+    const span = btn.querySelector("span");
+    const icon = btn.querySelector("i");
+    const largeCount = document.getElementById("vote-count-large");
+
+    btn.disabled = true;
+
+    fetch(`/petitions/vote/${petitionId}/`, {
+        method: "POST",
+        headers: { "X-CSRFToken": "{{ csrf_token }}" }
+    })
+    .then(r => r.json())
+    .then(data => {
+        if (!data.success) return;
+
+        btn.classList.toggle("voted", data.voted);
+        span.textContent = data.voted ? "Quitar apoyo" : "Apoyar esta petición";
+        icon.className = data.voted ? "bi bi-check-circle-fill me-2" : "bi bi-megaphone me-2";
+        
+        if (largeCount) {
+            largeCount.textContent = data.vote_count;
+            largeCount.parentElement.classList.add("vote-pop");
+            setTimeout(() => largeCount.parentElement.classList.remove("vote-pop"), 300);
+        }
+    })
+    .finally(() => btn.disabled = false);
+}
 
 function reportComment(id) {
     const reason = prompt("Razón de la denuncia:");
@@ -314,59 +370,5 @@ function reportComment(id) {
     .then(r => r.json())
     .then(d => alert(d.success ? d.message : d.error));
 }
-
-/* ------------ VOTAR ----------- */
-function createBubble(btn) {
-    for (let i = 0; i < 6; i++) {
-        const bubble = document.createElement("div");
-        bubble.classList.add("vote-bubble");
-
-        // random direction (-1 to +1)
-        bubble.style.setProperty("--x", Math.random() * 2 - 1);
-
-        bubble.style.left = (btn.offsetWidth / 2 - 5) + "px";
-        bubble.style.top = (btn.offsetHeight / 2 - 5) + "px";
-
-        btn.appendChild(bubble);
-
-        setTimeout(() => bubble.remove(), 600);
-    }
-}
-
-function vote(petitionId) {
-    const btn = document.getElementById("vote-btn");
-
-    fetch(`/petitions/vote/${petitionId}/`, {
-        method: "POST",
-        headers: { "X-CSRFToken": "{{ csrf_token }}" }
-    })
-    .then(response => response.json())
-    .then(data => {
-        if (!data.success) return;
-
-        // Animación POP
-        btn.classList.add("vote-pop");
-        setTimeout(() => btn.classList.remove("vote-pop"), 300);
-
-        // Partículas/Burbujas
-        createBubble(btn);
-
-        // Cambiar texto y color
-        if (data.voted) {
-            btn.innerText = "Quitar apoyo";
-            btn.classList.add("voted");
-        } else {
-            btn.innerText = "Apoyar esta petición";
-            btn.classList.remove("voted");
-        }
-
-        // Actualizar contador en vivo
-        const supportBadge = document.querySelector(".supports-badge");
-        if (supportBadge) {
-            supportBadge.textContent = data.vote_count + " apoyos";
-        }
-    });
-}
-
 </script>
 {% endblock %}
