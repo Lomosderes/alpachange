@@ -1,0 +1,29 @@
+🚀 ALPACHANGE - GUÍA DE INICIO RÁPIDO PARA DESARROLLADORES
+
+Sigue estos 5 pasos exactos para ejecutar el proyecto en tu máquina local:
+
+1. PREPARAR EL ENTORNO (Terminal en raíz del proyecto):
+   python -m venv venv
+   .\venv\Scripts\activate   (Windows)
+   source venv/bin/activate  (Mac/Linux)
+   pip install -r requirements.txt
+
+2. CONFIGURAR VARIABLES:
+   Copia el archivo '.env.example' y cámbiale el nombre a '.env'.
+   (Opcional: Abre '.env' y coloca tus credenciales de Gmail si quieres probar el correo).
+
+3. PREPARAR BASE DE DATOS:
+   python manage.py migrate
+
+4. CARGAR DATOS DE PRUEBA (Profesores, cursos y categorías):
+   python manage.py loaddata initial_data.json
+
+5. INICIAR Y ACCEDER:
+   python manage.py createsuperuser  (Para crear tu cuenta de administrador)
+   python manage.py runserver
+
+¡LISTO! Abre tu navegador en: http://127.0.0.1:8000
+
+---
+Nota: La cuenta de administración te permite gestionar profesores y resolver denuncias.
+Diseñado para la comunidad UNTELS.

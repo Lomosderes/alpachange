@@ -1,0 +1,1312 @@
+[
+{
+  "model": "evaluations.teacher",
+  "pk": 1,
+  "fields": {
+    "first_name": "Igor Jovino",
+    "last_name": "Aguilar Alonso",
+    "department": "Docente UNTELS",
+    "created_at": "2026-04-27T07:15:36.567Z"
+  }
+},
+{
+  "model": "evaluations.teacher",
+  "pk": 2,
+  "fields": {
+    "first_name": "Manuel Abelardo",
+    "last_name": "Alcántara Ramírez",
+    "department": "Docente UNTELS",
+    "created_at": "2026-04-27T07:15:36.573Z"
+  }
+},
+{
+  "model": "evaluations.teacher",
+  "pk": 3,
+  "fields": {
+    "first_name": "José Alfonso",
+    "last_name": "Apesteguia Infantes",
+    "department": "Docente UNTELS",
+    "created_at": "2026-04-27T07:15:36.578Z"
+  }
+},
+{
+  "model": "evaluations.teacher",
+  "pk": 4,
+  "fields": {
+    "first_name": "Carmen Luisa",
+    "last_name": "Aquije Dapozzo",
+    "department": "Docente UNTELS",
+    "created_at": "2026-04-27T07:15:36.583Z"
+  }
+},
+{
+  "model": "evaluations.teacher",
+  "pk": 5,
+  "fields": {
+    "first_name": "Alex Segundino",
+    "last_name": "Armas Blancas",
+    "department": "Docente UNTELS",
+    "created_at": "2026-04-27T07:15:36.587Z"
+  }
+},
+{
+  "model": "evaluations.teacher",
+  "pk": 6,
+  "fields": {
+    "first_name": "Antonio",
+    "last_name": "Arqque Pantigozo",
+    "department": "Docente UNTELS",
+    "created_at": "2026-04-27T07:15:36.592Z"
+  }
+},
+{
+  "model": "evaluations.teacher",
+  "pk": 7,
+  "fields": {
+    "first_name": "Maruja Emelita",
+    "last_name": "Blas Rebaza",
+    "department": "Docente UNTELS",
+    "created_at": "2026-04-27T07:15:36.596Z"
+  }
+},
+{
+  "model": "evaluations.teacher",
+  "pk": 8,
+  "fields": {
+    "first_name": "Julio César",
+    "last_name": "Bracho Pérez",
+    "department": "Docente UNTELS",
+    "created_at": "2026-04-27T07:15:36.602Z"
+  }
+},
+{
+  "model": "evaluations.teacher",
+  "pk": 9,
+  "fields": {
+    "first_name": "Jorge Luis",
+    "last_name": "Bringas Salvador",
+    "department": "Docente UNTELS",
+    "created_at": "2026-04-27T07:15:36.606Z"
+  }
+},
+{
+  "model": "evaluations.teacher",
+  "pk": 10,
+  "fields": {
+    "first_name": "Lucio",
+    "last_name": "Cáceres Espinoza",
+    "department": "Docente UNTELS",
+    "created_at": "2026-04-27T07:15:36.610Z"
+  }
+},
+{
+  "model": "evaluations.teacher",
+  "pk": 11,
+  "fields": {
+    "first_name": "Ever William",
+    "last_name": "Camacho Orbegoso",
+    "department": "Docente UNTELS",
+    "created_at": "2026-04-27T07:15:36.614Z"
+  }
+},
+{
+  "model": "evaluations.teacher",
+  "pk": 12,
+  "fields": {
+    "first_name": "Fredy",
+    "last_name": "Campos Aguado",
+    "department": "Docente UNTELS",
+    "created_at": "2026-04-27T07:15:36.618Z"
+  }
+},
+{
+  "model": "evaluations.teacher",
+  "pk": 13,
+  "fields": {
+    "first_name": "Nataly",
+    "last_name": "Cárdenas Carrión",
+    "department": "Docente UNTELS",
+    "created_at": "2026-04-27T07:15:36.622Z"
+  }
+},
+{
+  "model": "evaluations.teacher",
+  "pk": 14,
+  "fields": {
+    "first_name": "Alex",
+    "last_name": "Cartagena Gordillo",
+    "department": "Docente UNTELS",
+    "created_at": "2026-04-27T07:15:36.626Z"
+  }
+},
+{
+  "model": "evaluations.teacher",
+  "pk": 15,
+  "fields": {
+    "first_name": "Jesús Rodomiro",
+    "last_name": "Casquier Ortiz",
+    "department": "Docente UNTELS",
+    "created_at": "2026-04-27T07:15:36.631Z"
+  }
+},
+{
+  "model": "evaluations.teacher",
+  "pk": 16,
+  "fields": {
+    "first_name": "Gloria Helena",
+    "last_name": "Castro León",
+    "department": "Docente UNTELS",
+    "created_at": "2026-04-27T07:15:36.635Z"
+  }
+},
+{
+  "model": "evaluations.teacher",
+  "pk": 17,
+  "fields": {
+    "first_name": "Inés",
+    "last_name": "Castro Reyes de Lozano",
+    "department": "Docente UNTELS",
+    "created_at": "2026-04-27T07:15:36.640Z"
+  }
+},
+{
+  "model": "evaluations.teacher",
+  "pk": 18,
+  "fields": {
+    "first_name": "Flor",
+    "last_name": "Cerdán León",
+    "department": "Docente UNTELS",
+    "created_at": "2026-04-27T07:15:36.645Z"
+  }
+},
+{
+  "model": "evaluations.teacher",
+  "pk": 19,
+  "fields": {
+    "first_name": "Omar Freddy",
+    "last_name": "Chamorro Atalaya",
+    "department": "Docente UNTELS",
+    "created_at": "2026-04-27T07:15:36.651Z"
+  }
+},
+{
+  "model": "evaluations.teacher",
+  "pk": 20,
+  "fields": {
+    "first_name": "Mario Bernabé",
+    "last_name": "Chauca Saavedra",
+    "department": "Docente UNTELS",
+    "created_at": "2026-04-27T07:15:36.656Z"
+  }
+},
+{
+  "model": "evaluations.teacher",
+  "pk": 21,
+  "fields": {
+    "first_name": "Carlos Ernesto",
+    "last_name": "Chávez Herrera",
+    "department": "Docente UNTELS",
+    "created_at": "2026-04-27T07:15:36.661Z"
+  }
+},
+{
+  "model": "evaluations.teacher",
+  "pk": 22,
+  "fields": {
+    "first_name": "Danilo",
+    "last_name": "Chávez Rojas",
+    "department": "Docente UNTELS",
+    "created_at": "2026-04-27T07:15:36.665Z"
+  }
+},
+{
+  "model": "evaluations.teacher",
+  "pk": 23,
+  "fields": {
+    "first_name": "Álvaro Enrique",
+    "last_name": "Chávez Zubieta",
+    "department": "Docente UNTELS",
+    "created_at": "2026-04-27T07:15:36.671Z"
+  }
+},
+{
+  "model": "evaluations.teacher",
+  "pk": 24,
+  "fields": {
+    "first_name": "Manuel Enrique",
+    "last_name": "Chenet Zuta",
+    "department": "Docente UNTELS",
+    "created_at": "2026-04-27T07:15:36.676Z"
+  }
+},
+{
+  "model": "evaluations.teacher",
+  "pk": 25,
+  "fields": {
+    "first_name": "Mark Donny",
+    "last_name": "Clemente Arenas",
+    "department": "Docente UNTELS",
+    "created_at": "2026-04-27T07:15:36.681Z"
+  }
+},
+{
+  "model": "evaluations.teacher",
+  "pk": 26,
+  "fields": {
+    "first_name": "José Arnaldo",
+    "last_name": "Collantes Hidalgo",
+    "department": "Docente UNTELS",
+    "created_at": "2026-04-27T07:15:36.684Z"
+  }
+},
+{
+  "model": "evaluations.teacher",
+  "pk": 27,
+  "fields": {
+    "first_name": "Alberto",
+    "last_name": "Coronado Matutti",
+    "department": "Docente UNTELS",
+    "created_at": "2026-04-27T07:15:36.688Z"
+  }
+},
+{
+  "model": "evaluations.teacher",
+  "pk": 28,
+  "fields": {
+    "first_name": "Moisés",
+    "last_name": "Cotacallapa Vilca",
+    "department": "Docente UNTELS",
+    "created_at": "2026-04-27T07:15:36.692Z"
+  }
+},
+{
+  "model": "evaluations.teacher",
+  "pk": 29,
+  "fields": {
+    "first_name": "Juan Pablo",
+    "last_name": "Cotrina Cosar",
+    "department": "Docente UNTELS",
+    "created_at": "2026-04-27T07:15:36.697Z"
+  }
+},
+{
+  "model": "evaluations.teacher",
+  "pk": 30,
+  "fields": {
+    "first_name": "Abilio Bernardino",
+    "last_name": "Cuzcano Rivas",
+    "department": "Docente UNTELS",
+    "created_at": "2026-04-27T07:15:36.701Z"
+  }
+},
+{
+  "model": "evaluations.teacher",
+  "pk": 31,
+  "fields": {
+    "first_name": "Rubén Armando",
+    "last_name": "Daga López",
+    "department": "Docente UNTELS",
+    "created_at": "2026-04-27T07:15:36.707Z"
+  }
+},
+{
+  "model": "evaluations.teacher",
+  "pk": 32,
+  "fields": {
+    "first_name": "Carlos Vidal",
+    "last_name": "Dávila Ignacio",
+    "department": "Docente UNTELS",
+    "created_at": "2026-04-27T07:15:36.712Z"
+  }
+},
+{
+  "model": "evaluations.teacher",
+  "pk": 33,
+  "fields": {
+    "first_name": "Rocío Julieta",
+    "last_name": "De La Cruz Marcacuzco",
+    "department": "Docente UNTELS",
+    "created_at": "2026-04-27T07:15:36.716Z"
+  }
+},
+{
+  "model": "evaluations.teacher",
+  "pk": 34,
+  "fields": {
+    "first_name": "Teodoro Neri",
+    "last_name": "Díaz Leyva",
+    "department": "Docente UNTELS",
+    "created_at": "2026-04-27T07:15:36.720Z"
+  }
+},
+{
+  "model": "evaluations.teacher",
+  "pk": 35,
+  "fields": {
+    "first_name": "Miguel Ángel Alberto",
+    "last_name": "Díaz Matayoshi",
+    "department": "Docente UNTELS",
+    "created_at": "2026-04-27T07:15:36.724Z"
+  }
+},
+{
+  "model": "evaluations.teacher",
+  "pk": 36,
+  "fields": {
+    "first_name": "Antonio",
+    "last_name": "Escalante Aburto",
+    "department": "Docente UNTELS",
+    "created_at": "2026-04-27T07:15:36.729Z"
+  }
+},
+{
+  "model": "evaluations.teacher",
+  "pk": 37,
+  "fields": {
+    "first_name": "Frank Edmundo",
+    "last_name": "Escobedo Bailón",
+    "department": "Docente UNTELS",
+    "created_at": "2026-04-27T07:15:36.733Z"
+  }
+},
+{
+  "model": "evaluations.teacher",
+  "pk": 38,
+  "fields": {
+    "first_name": "Javier Leonardo",
+    "last_name": "Estrada Domínguez",
+    "department": "Docente UNTELS",
+    "created_at": "2026-04-27T07:15:36.736Z"
+  }
+},
+{
+  "model": "evaluations.teacher",
+  "pk": 39,
+  "fields": {
+    "first_name": "Richard",
+    "last_name": "Flores Cáceres",
+    "department": "Docente UNTELS",
+    "created_at": "2026-04-27T07:15:36.740Z"
+  }
+},
+{
+  "model": "evaluations.teacher",
+  "pk": 40,
+  "fields": {
+    "first_name": "Jesús Rule",
+    "last_name": "Flores Cruz",
+    "department": "Docente UNTELS",
+    "created_at": "2026-04-27T07:15:36.743Z"
+  }
+},
+{
+  "model": "evaluations.teacher",
+  "pk": 41,
+  "fields": {
+    "first_name": "Carlos Hernán",
+    "last_name": "Flores Velásquez",
+    "department": "Docente UNTELS",
+    "created_at": "2026-04-27T07:15:36.747Z"
+  }
+},
+{
+  "model": "evaluations.teacher",
+  "pk": 42,
+  "fields": {
+    "first_name": "Luis Felipe",
+    "last_name": "Gamarra Chavarry",
+    "department": "Docente UNTELS",
+    "created_at": "2026-04-27T07:15:36.750Z"
+  }
+},
+{
+  "model": "evaluations.teacher",
+  "pk": 43,
+  "fields": {
+    "first_name": "Elizabeth Emperatriz",
+    "last_name": "García Salirosas",
+    "department": "Docente UNTELS",
+    "created_at": "2026-04-27T07:15:36.753Z"
+  }
+},
+{
+  "model": "evaluations.teacher",
+  "pk": 44,
+  "fields": {
+    "first_name": "Alcides",
+    "last_name": "Garzón Flores",
+    "department": "Docente UNTELS",
+    "created_at": "2026-04-27T07:15:36.756Z"
+  }
+},
+{
+  "model": "evaluations.teacher",
+  "pk": 45,
+  "fields": {
+    "first_name": "Pablo Guillermo",
+    "last_name": "Gonzales Ormeño",
+    "department": "Docente UNTELS",
+    "created_at": "2026-04-27T07:15:36.760Z"
+  }
+},
+{
+  "model": "evaluations.teacher",
+  "pk": 46,
+  "fields": {
+    "first_name": "Herbert Junior",
+    "last_name": "Grados Espinoza",
+    "department": "Docente UNTELS",
+    "created_at": "2026-04-27T07:15:36.763Z"
+  }
+},
+{
+  "model": "evaluations.teacher",
+  "pk": 47,
+  "fields": {
+    "first_name": "Javier",
+    "last_name": "Herrera Espinoza",
+    "department": "Docente UNTELS",
+    "created_at": "2026-04-27T07:15:36.767Z"
+  }
+},
+{
+  "model": "evaluations.teacher",
+  "pk": 48,
+  "fields": {
+    "first_name": "José Luis",
+    "last_name": "Herrera Salazar",
+    "department": "Docente UNTELS",
+    "created_at": "2026-04-27T07:15:36.771Z"
+  }
+},
+{
+  "model": "evaluations.teacher",
+  "pk": 49,
+  "fields": {
+    "first_name": "Celso",
+    "last_name": "Huanca Luque",
+    "department": "Docente UNTELS",
+    "created_at": "2026-04-27T07:15:36.774Z"
+  }
+},
+{
+  "model": "evaluations.teacher",
+  "pk": 50,
+  "fields": {
+    "first_name": "Raúl Eduardo",
+    "last_name": "Huarote Zegarra",
+    "department": "Docente UNTELS",
+    "created_at": "2026-04-27T07:15:36.778Z"
+  }
+},
+{
+  "model": "evaluations.teacher",
+  "pk": 51,
+  "fields": {
+    "first_name": "Janett Deisy",
+    "last_name": "Julca Flores",
+    "department": "Docente UNTELS",
+    "created_at": "2026-04-27T07:15:36.781Z"
+  }
+},
+{
+  "model": "evaluations.teacher",
+  "pk": 52,
+  "fields": {
+    "first_name": "Carlos Jacinto",
+    "last_name": "La Rosa Longobardi",
+    "department": "Docente UNTELS",
+    "created_at": "2026-04-27T07:15:36.784Z"
+  }
+},
+{
+  "model": "evaluations.teacher",
+  "pk": 53,
+  "fields": {
+    "first_name": "Alfredo César",
+    "last_name": "Larios Franco",
+    "department": "Docente UNTELS",
+    "created_at": "2026-04-27T07:15:36.787Z"
+  }
+},
+{
+  "model": "evaluations.teacher",
+  "pk": 54,
+  "fields": {
+    "first_name": "Antenor",
+    "last_name": "Leva Apaza",
+    "department": "Docente UNTELS",
+    "created_at": "2026-04-27T07:15:36.790Z"
+  }
+},
+{
+  "model": "evaluations.teacher",
+  "pk": 55,
+  "fields": {
+    "first_name": "Daniel",
+    "last_name": "Levano Rodríguez",
+    "department": "Docente UNTELS",
+    "created_at": "2026-04-27T07:15:36.795Z"
+  }
+},
+{
+  "model": "evaluations.teacher",
+  "pk": 56,
+  "fields": {
+    "first_name": "Jinmi Gregory",
+    "last_name": "Lezama Calvo",
+    "department": "Docente UNTELS",
+    "created_at": "2026-04-27T07:15:36.798Z"
+  }
+},
+{
+  "model": "evaluations.teacher",
+  "pk": 57,
+  "fields": {
+    "first_name": "Fidel",
+    "last_name": "Luján Ludeña",
+    "department": "Docente UNTELS",
+    "created_at": "2026-04-27T07:15:36.802Z"
+  }
+},
+{
+  "model": "evaluations.teacher",
+  "pk": 58,
+  "fields": {
+    "first_name": "Jesús Virgilio",
+    "last_name": "Luque Rivera",
+    "department": "Docente UNTELS",
+    "created_at": "2026-04-27T07:15:36.805Z"
+  }
+},
+{
+  "model": "evaluations.teacher",
+  "pk": 59,
+  "fields": {
+    "first_name": "José Ambrosio",
+    "last_name": "Machuca Mines",
+    "department": "Docente UNTELS",
+    "created_at": "2026-04-27T07:15:36.808Z"
+  }
+},
+{
+  "model": "evaluations.teacher",
+  "pk": 60,
+  "fields": {
+    "first_name": "Myrna",
+    "last_name": "Manco Caycho",
+    "department": "Docente UNTELS",
+    "created_at": "2026-04-27T07:15:36.812Z"
+  }
+},
+{
+  "model": "evaluations.teacher",
+  "pk": 61,
+  "fields": {
+    "first_name": "Edgar Avelino",
+    "last_name": "Marcelino Tarmeño",
+    "department": "Docente UNTELS",
+    "created_at": "2026-04-27T07:15:36.816Z"
+  }
+},
+{
+  "model": "evaluations.teacher",
+  "pk": 62,
+  "fields": {
+    "first_name": "María del Rosario",
+    "last_name": "Marini Saldaña",
+    "department": "Docente UNTELS",
+    "created_at": "2026-04-27T07:15:36.819Z"
+  }
+},
+{
+  "model": "evaluations.teacher",
+  "pk": 63,
+  "fields": {
+    "first_name": "Obert",
+    "last_name": "Marín Sánchez",
+    "department": "Docente UNTELS",
+    "created_at": "2026-04-27T07:15:36.822Z"
+  }
+},
+{
+  "model": "evaluations.teacher",
+  "pk": 64,
+  "fields": {
+    "first_name": "Sofía Victoria",
+    "last_name": "Mata Espinoza",
+    "department": "Docente UNTELS",
+    "created_at": "2026-04-27T07:15:36.826Z"
+  }
+},
+{
+  "model": "evaluations.teacher",
+  "pk": 65,
+  "fields": {
+    "first_name": "Miguel Ángel",
+    "last_name": "Melgarejo Quijandria",
+    "department": "Docente UNTELS",
+    "created_at": "2026-04-27T07:15:36.830Z"
+  }
+},
+{
+  "model": "evaluations.teacher",
+  "pk": 66,
+  "fields": {
+    "first_name": "Maritza Yovany",
+    "last_name": "Mestanza Tejada",
+    "department": "Docente UNTELS",
+    "created_at": "2026-04-27T07:15:36.833Z"
+  }
+},
+{
+  "model": "evaluations.teacher",
+  "pk": 67,
+  "fields": {
+    "first_name": "Fabrizio Armando",
+    "last_name": "Millán Montalvo",
+    "department": "Docente UNTELS",
+    "created_at": "2026-04-27T07:15:36.836Z"
+  }
+},
+{
+  "model": "evaluations.teacher",
+  "pk": 68,
+  "fields": {
+    "first_name": "Enrique Manuel",
+    "last_name": "Morán Montoya",
+    "department": "Docente UNTELS",
+    "created_at": "2026-04-27T07:15:36.840Z"
+  }
+},
+{
+  "model": "evaluations.teacher",
+  "pk": 69,
+  "fields": {
+    "first_name": "Carlos Andrés",
+    "last_name": "Mugruza Vassallo",
+    "department": "Docente UNTELS",
+    "created_at": "2026-04-27T07:15:36.843Z"
+  }
+},
+{
+  "model": "evaluations.teacher",
+  "pk": 70,
+  "fields": {
+    "first_name": "Melissa Fátima",
+    "last_name": "Muñante Toledo",
+    "department": "Docente UNTELS",
+    "created_at": "2026-04-27T07:15:36.847Z"
+  }
+},
+{
+  "model": "evaluations.teacher",
+  "pk": 71,
+  "fields": {
+    "first_name": "Margarita Fredesvinda",
+    "last_name": "Murillo Manrique",
+    "department": "Docente UNTELS",
+    "created_at": "2026-04-27T07:15:36.850Z"
+  }
+},
+{
+  "model": "evaluations.teacher",
+  "pk": 72,
+  "fields": {
+    "first_name": "Roberto",
+    "last_name": "Navarro Pareja",
+    "department": "Docente UNTELS",
+    "created_at": "2026-04-27T07:15:36.854Z"
+  }
+},
+{
+  "model": "evaluations.teacher",
+  "pk": 73,
+  "fields": {
+    "first_name": "Mario Edison",
+    "last_name": "Ninaquispe Soto",
+    "department": "Docente UNTELS",
+    "created_at": "2026-04-27T07:15:36.857Z"
+  }
+},
+{
+  "model": "evaluations.teacher",
+  "pk": 74,
+  "fields": {
+    "first_name": "Hernán",
+    "last_name": "Ochoa Carbajal",
+    "department": "Docente UNTELS",
+    "created_at": "2026-04-27T07:15:36.860Z"
+  }
+},
+{
+  "model": "evaluations.teacher",
+  "pk": 75,
+  "fields": {
+    "first_name": "Soledad del Rosario",
+    "last_name": "Olivares Zegarra",
+    "department": "Docente UNTELS",
+    "created_at": "2026-04-27T07:15:36.865Z"
+  }
+},
+{
+  "model": "evaluations.teacher",
+  "pk": 76,
+  "fields": {
+    "first_name": "Edgard",
+    "last_name": "Oporto Díaz",
+    "department": "Docente UNTELS",
+    "created_at": "2026-04-27T07:15:36.868Z"
+  }
+},
+{
+  "model": "evaluations.teacher",
+  "pk": 77,
+  "fields": {
+    "first_name": "Orlando Adrián",
+    "last_name": "Ortega Galicio",
+    "department": "Docente UNTELS",
+    "created_at": "2026-04-27T07:15:36.871Z"
+  }
+},
+{
+  "model": "evaluations.teacher",
+  "pk": 78,
+  "fields": {
+    "first_name": "Ricardo John",
+    "last_name": "Palomares Orihuela",
+    "department": "Docente UNTELS",
+    "created_at": "2026-04-27T07:15:36.875Z"
+  }
+},
+{
+  "model": "evaluations.teacher",
+  "pk": 79,
+  "fields": {
+    "first_name": "Mario Rogelio",
+    "last_name": "Peláez Osorio",
+    "department": "Docente UNTELS",
+    "created_at": "2026-04-27T07:15:36.878Z"
+  }
+},
+{
+  "model": "evaluations.teacher",
+  "pk": 80,
+  "fields": {
+    "first_name": "Roberto",
+    "last_name": "Pfuyo Muñoz",
+    "department": "Docente UNTELS",
+    "created_at": "2026-04-27T07:15:36.882Z"
+  }
+},
+{
+  "model": "evaluations.teacher",
+  "pk": 81,
+  "fields": {
+    "first_name": "Solin Epifanio",
+    "last_name": "Puma Corbacho",
+    "department": "Docente UNTELS",
+    "created_at": "2026-04-27T07:15:36.886Z"
+  }
+},
+{
+  "model": "evaluations.teacher",
+  "pk": 82,
+  "fields": {
+    "first_name": "Max Fredi",
+    "last_name": "Quispe Aguilar",
+    "department": "Docente UNTELS",
+    "created_at": "2026-04-27T07:15:36.889Z"
+  }
+},
+{
+  "model": "evaluations.teacher",
+  "pk": 83,
+  "fields": {
+    "first_name": "Julio Enrique",
+    "last_name": "Quispe Tuesta",
+    "department": "Docente UNTELS",
+    "created_at": "2026-04-27T07:15:36.892Z"
+  }
+},
+{
+  "model": "evaluations.teacher",
+  "pk": 84,
+  "fields": {
+    "first_name": "Robert Richard",
+    "last_name": "Rafael Rutte",
+    "department": "Docente UNTELS",
+    "created_at": "2026-04-27T07:15:36.896Z"
+  }
+},
+{
+  "model": "evaluations.teacher",
+  "pk": 85,
+  "fields": {
+    "first_name": "Eric",
+    "last_name": "Rendón Schneire",
+    "department": "Docente UNTELS",
+    "created_at": "2026-04-27T07:15:36.899Z"
+  }
+},
+{
+  "model": "evaluations.teacher",
+  "pk": 86,
+  "fields": {
+    "first_name": "Ronald Juven",
+    "last_name": "Reyes Narváez",
+    "department": "Docente UNTELS",
+    "created_at": "2026-04-27T07:15:36.903Z"
+  }
+},
+{
+  "model": "evaluations.teacher",
+  "pk": 87,
+  "fields": {
+    "first_name": "Margot",
+    "last_name": "Rodríguez Mayhuasca",
+    "department": "Docente UNTELS",
+    "created_at": "2026-04-27T07:15:36.906Z"
+  }
+},
+{
+  "model": "evaluations.teacher",
+  "pk": 88,
+  "fields": {
+    "first_name": "Celia Herminia",
+    "last_name": "Rodríguez Olaya",
+    "department": "Docente UNTELS",
+    "created_at": "2026-04-27T07:15:36.909Z"
+  }
+},
+{
+  "model": "evaluations.teacher",
+  "pk": 89,
+  "fields": {
+    "first_name": "Avid",
+    "last_name": "Román Gonzales",
+    "department": "Docente UNTELS",
+    "created_at": "2026-04-27T07:15:36.913Z"
+  }
+},
+{
+  "model": "evaluations.teacher",
+  "pk": 90,
+  "fields": {
+    "first_name": "Luis Miguel",
+    "last_name": "Romero Echevarría",
+    "department": "Docente UNTELS",
+    "created_at": "2026-04-27T07:15:36.953Z"
+  }
+},
+{
+  "model": "evaluations.teacher",
+  "pk": 91,
+  "fields": {
+    "first_name": "Santiago Linder",
+    "last_name": "Rubiños Jiménez",
+    "department": "Docente UNTELS",
+    "created_at": "2026-04-27T07:15:36.957Z"
+  }
+},
+{
+  "model": "evaluations.teacher",
+  "pk": 92,
+  "fields": {
+    "first_name": "Carmen Milagros",
+    "last_name": "Ruiz Huamán",
+    "department": "Docente UNTELS",
+    "created_at": "2026-04-27T07:15:36.961Z"
+  }
+},
+{
+  "model": "evaluations.teacher",
+  "pk": 93,
+  "fields": {
+    "first_name": "Víctor Ramiro",
+    "last_name": "Salas Zeballos",
+    "department": "Docente UNTELS",
+    "created_at": "2026-04-27T07:15:36.964Z"
+  }
+},
+{
+  "model": "evaluations.teacher",
+  "pk": 94,
+  "fields": {
+    "first_name": "Gustavo Néstor",
+    "last_name": "Salazar Huamani",
+    "department": "Docente UNTELS",
+    "created_at": "2026-04-27T07:15:36.968Z"
+  }
+},
+{
+  "model": "evaluations.teacher",
+  "pk": 95,
+  "fields": {
+    "first_name": "Robert",
+    "last_name": "Salazar Quispe",
+    "department": "Docente UNTELS",
+    "created_at": "2026-04-27T07:15:36.972Z"
+  }
+},
+{
+  "model": "evaluations.teacher",
+  "pk": 96,
+  "fields": {
+    "first_name": "Jaime Hewer",
+    "last_name": "San Bartolomé Montero",
+    "department": "Docente UNTELS",
+    "created_at": "2026-04-27T07:15:36.975Z"
+  }
+},
+{
+  "model": "evaluations.teacher",
+  "pk": 97,
+  "fields": {
+    "first_name": "Jorge Augusto",
+    "last_name": "Sánchez Ayte",
+    "department": "Docente UNTELS",
+    "created_at": "2026-04-27T07:15:36.978Z"
+  }
+},
+{
+  "model": "evaluations.teacher",
+  "pk": 98,
+  "fields": {
+    "first_name": "Odon Román",
+    "last_name": "Sánchez Ccoyllo",
+    "department": "Docente UNTELS",
+    "created_at": "2026-04-27T07:15:36.981Z"
+  }
+},
+{
+  "model": "evaluations.teacher",
+  "pk": 99,
+  "fields": {
+    "first_name": "Jorge Alejandro",
+    "last_name": "Sánchez Garcés",
+    "department": "Docente UNTELS",
+    "created_at": "2026-04-27T07:15:36.985Z"
+  }
+},
+{
+  "model": "evaluations.teacher",
+  "pk": 100,
+  "fields": {
+    "first_name": "Verónica Matilde",
+    "last_name": "Sánchez Montenegro",
+    "department": "Docente UNTELS",
+    "created_at": "2026-04-27T07:15:36.989Z"
+  }
+},
+{
+  "model": "evaluations.teacher",
+  "pk": 101,
+  "fields": {
+    "first_name": "Julio César",
+    "last_name": "Sandoval Javier",
+    "department": "Docente UNTELS",
+    "created_at": "2026-04-27T07:15:36.993Z"
+  }
+},
+{
+  "model": "evaluations.teacher",
+  "pk": 102,
+  "fields": {
+    "first_name": "Roger Manuel Jesús",
+    "last_name": "Silva Mares",
+    "department": "Docente UNTELS",
+    "created_at": "2026-04-27T07:15:36.996Z"
+  }
+},
+{
+  "model": "evaluations.teacher",
+  "pk": 103,
+  "fields": {
+    "first_name": "Edmur",
+    "last_name": "Sotomayor Quispe",
+    "department": "Docente UNTELS",
+    "created_at": "2026-04-27T07:15:37.000Z"
+  }
+},
+{
+  "model": "evaluations.teacher",
+  "pk": 104,
+  "fields": {
+    "first_name": "Ignacio Rubén",
+    "last_name": "Tacza Valverde",
+    "department": "Docente UNTELS",
+    "created_at": "2026-04-27T07:15:37.003Z"
+  }
+},
+{
+  "model": "evaluations.teacher",
+  "pk": 105,
+  "fields": {
+    "first_name": "Néstor Raúl",
+    "last_name": "Tasayco Matías",
+    "department": "Docente UNTELS",
+    "created_at": "2026-04-27T07:15:37.008Z"
+  }
+},
+{
+  "model": "evaluations.teacher",
+  "pk": 106,
+  "fields": {
+    "first_name": "Marco Antonio",
+    "last_name": "Tipismana Neyra",
+    "department": "Docente UNTELS",
+    "created_at": "2026-04-27T07:15:37.011Z"
+  }
+},
+{
+  "model": "evaluations.teacher",
+  "pk": 107,
+  "fields": {
+    "first_name": "Julio César",
+    "last_name": "Torres Isla",
+    "department": "Docente UNTELS",
+    "created_at": "2026-04-27T07:15:37.014Z"
+  }
+},
+{
+  "model": "evaluations.teacher",
+  "pk": 108,
+  "fields": {
+    "first_name": "Eleazar Obed",
+    "last_name": "Torres Jiménez",
+    "department": "Docente UNTELS",
+    "created_at": "2026-04-27T07:15:37.017Z"
+  }
+},
+{
+  "model": "evaluations.teacher",
+  "pk": 109,
+  "fields": {
+    "first_name": "César",
+    "last_name": "Trujillo Hinojosa",
+    "department": "Docente UNTELS",
+    "created_at": "2026-04-27T07:15:37.021Z"
+  }
+},
+{
+  "model": "evaluations.teacher",
+  "pk": 110,
+  "fields": {
+    "first_name": "Haydee Verónica",
+    "last_name": "Tullume Huayanay",
+    "department": "Docente UNTELS",
+    "created_at": "2026-04-27T07:15:37.026Z"
+  }
+},
+{
+  "model": "evaluations.teacher",
+  "pk": 111,
+  "fields": {
+    "first_name": "Robert Ángel",
+    "last_name": "Urbina Medina",
+    "department": "Docente UNTELS",
+    "created_at": "2026-04-27T07:15:37.030Z"
+  }
+},
+{
+  "model": "evaluations.teacher",
+  "pk": 112,
+  "fields": {
+    "first_name": "Zanhy Leonor",
+    "last_name": "Valencia Reyes",
+    "department": "Docente UNTELS",
+    "created_at": "2026-04-27T07:15:37.034Z"
+  }
+},
+{
+  "model": "evaluations.teacher",
+  "pk": 113,
+  "fields": {
+    "first_name": "Julio Elvis",
+    "last_name": "Valero Cajahuanca",
+    "department": "Docente UNTELS",
+    "created_at": "2026-04-27T07:15:37.038Z"
+  }
+},
+{
+  "model": "evaluations.teacher",
+  "pk": 114,
+  "fields": {
+    "first_name": "Jaime",
+    "last_name": "Vento Flores",
+    "department": "Docente UNTELS",
+    "created_at": "2026-04-27T07:15:37.041Z"
+  }
+},
+{
+  "model": "evaluations.teacher",
+  "pk": 115,
+  "fields": {
+    "first_name": "Jacinto Joaquín",
+    "last_name": "Vértiz Osores",
+    "department": "Docente UNTELS",
+    "created_at": "2026-04-27T07:15:37.045Z"
+  }
+},
+{
+  "model": "evaluations.teacher",
+  "pk": 116,
+  "fields": {
+    "first_name": "Carlos Guillermo",
+    "last_name": "Viaña Rubio",
+    "department": "Docente UNTELS",
+    "created_at": "2026-04-27T07:15:37.048Z"
+  }
+},
+{
+  "model": "evaluations.teacher",
+  "pk": 117,
+  "fields": {
+    "first_name": "Edwin Augusto",
+    "last_name": "Vigo Sánchez",
+    "department": "Docente UNTELS",
+    "created_at": "2026-04-27T07:15:37.051Z"
+  }
+},
+{
+  "model": "evaluations.teacher",
+  "pk": 118,
+  "fields": {
+    "first_name": "José Yudberto",
+    "last_name": "Vilca Ccolque",
+    "department": "Docente UNTELS",
+    "created_at": "2026-04-27T07:15:37.055Z"
+  }
+},
+{
+  "model": "evaluations.teacher",
+  "pk": 119,
+  "fields": {
+    "first_name": "Raúl César",
+    "last_name": "Vilcahuamán Sanabria",
+    "department": "Docente UNTELS",
+    "created_at": "2026-04-27T07:15:37.058Z"
+  }
+},
+{
+  "model": "evaluations.teacher",
+  "pk": 120,
+  "fields": {
+    "first_name": "Guillermo Lorenzo",
+    "last_name": "Vilchez Ochoa",
+    "department": "Docente UNTELS",
+    "created_at": "2026-04-27T07:15:37.062Z"
+  }
+},
+{
+  "model": "evaluations.teacher",
+  "pk": 121,
+  "fields": {
+    "first_name": "José Luis",
+    "last_name": "Villegas Chumpitaz",
+    "department": "Docente UNTELS",
+    "created_at": "2026-04-27T07:15:37.066Z"
+  }
+},
+{
+  "model": "evaluations.teacher",
+  "pk": 122,
+  "fields": {
+    "first_name": "Mirko",
+    "last_name": "Villalta Gonzales",
+    "department": "Docente UNTELS",
+    "created_at": "2026-04-27T07:15:37.069Z"
+  }
+},
+{
+  "model": "evaluations.teacher",
+  "pk": 123,
+  "fields": {
+    "first_name": "Jaime Javier",
+    "last_name": "Villanueva Barreto",
+    "department": "Docente UNTELS",
+    "created_at": "2026-04-27T07:15:37.073Z"
+  }
+},
+{
+  "model": "evaluations.teacher",
+  "pk": 124,
+  "fields": {
+    "first_name": "Óscar Adrián",
+    "last_name": "Zapillado Huanco",
+    "department": "Docente UNTELS",
+    "created_at": "2026-04-27T07:15:37.076Z"
+  }
+},
+{
+  "model": "evaluations.teacher",
+  "pk": 125,
+  "fields": {
+    "first_name": "Fabio",
+    "last_name": "Zegarra Choque",
+    "department": "Docente UNTELS",
+    "created_at": "2026-04-27T07:15:37.080Z"
+  }
+},
+{
+  "model": "evaluations.teacher",
+  "pk": 126,
+  "fields": {
+    "first_name": "Luis Alfredo",
+    "last_name": "Zúñiga Fiestas",
+    "department": "Docente UNTELS",
+    "created_at": "2026-04-27T07:15:37.084Z"
+  }
+},
+{
+  "model": "evaluations.course",
+  "pk": 1,
+  "fields": {
+    "name": "Taller de Programación de Móviles",
+    "code": null
+  }
+},
+{
+  "model": "petitions.category",
+  "pk": 1,
+  "fields": {
+    "name": "Bienestar estudiantil"
+  }
+},
+{
+  "model": "petitions.category",
+  "pk": 2,
+  "fields": {
+    "name": "Infraestructura"
+  }
+},
+{
+  "model": "petitions.category",
+  "pk": 3,
+  "fields": {
+    "name": "Docentes"
+  }
+},
+{
+  "model": "petitions.category",
+  "pk": 4,
+  "fields": {
+    "name": "Servicios universitarios"
+  }
+},
+{
+  "model": "petitions.category",
+  "pk": 5,
+  "fields": {
+    "name": "Académico"
+  }
+},
+{
+  "model": "petitions.category",
+  "pk": 6,
+  "fields": {
+    "name": "Otros"
+  }
+}
+]
