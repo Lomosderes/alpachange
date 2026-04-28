@@ -1,4 +1,5 @@
 import dj_database_url
+import os
 from .base import *
 
 DEBUG = config('DEBUG', default=False, cast=bool)
@@ -16,13 +17,22 @@ DATABASES = {
 }
 
 # Configuración de archivos estáticos con WhiteNoise
-# https://whitenoise.readthedocs.io/en/stable/django.html
-# Aseguramos que WhiteNoise esté en el middleware
 if 'whitenoise.middleware.WhiteNoiseMiddleware' not in MIDDLEWARE:
     MIDDLEWARE.insert(1, 'whitenoise.middleware.WhiteNoiseMiddleware')
 
-# Optimización de almacenamiento de estáticos
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+# Cambiamos a la versión que no requiere un manifiesto estricto para evitar errores 404
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedStaticFilesStorage'
+
+# ============================
+# CONFIGURACIÓN DE CLOUDINARY
+# ============================
+CLOUDINARY_STORAGE = {
+    'CLOUD_NAME': config('CLOUDINARY_CLOUD_NAME'),
+    'API_KEY': config('CLOUDINARY_API_KEY'),
+    'API_SECRET': config('CLOUDINARY_API_SECRET'),
+}
+
+DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
 
 # Configuraciones de seguridad para producción
 CSRF_TRUSTED_ORIGINS = [f"https://{host}" for host in ALLOWED_HOSTS if host.startswith('.')]

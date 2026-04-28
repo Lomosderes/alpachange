@@ -31,6 +31,8 @@ INSTALLED_APPS = [
     
     # Third party apps
     'widget_tweaks',
+    'cloudinary',
+    'cloudinary_storage',
 ]
 
 MIDDLEWARE = [
