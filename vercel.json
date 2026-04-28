@@ -1,23 +1,15 @@
 {
   "buildCommand": "bash build.sh",
-  "builds": [
+  "outputDirectory": "staticfiles",
+  "framework": "django",
+  "rewrites": [
     {
-      "src": "alpachange_untels/wsgi.py",
-      "use": "@vercel/python",
-      "config": {
-        "maxLambdaSize": "15mb",
-        "runtime": "python3.12"
-      }
-    }
-  ],
-  "routes": [
-    {
-      "src": "/static/(.*)",
-      "dest": "/static/$1"
+      "source": "/static/(.*)",
+      "destination": "/static/$1"
     },
     {
-      "src": "/(.*)",
-      "dest": "alpachange_untels/wsgi.py"
+      "source": "/(.*)",
+      "destination": "alpachange_untels/wsgi.py"
     }
   ]
 }
